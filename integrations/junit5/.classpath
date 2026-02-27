@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="output" path="bin/default"/>
+	<classpathentry output="bin/main" kind="src" path="src/main/java">
+		<attributes>
+			<attribute name="gradle_scope" value="main"/>
+			<attribute name="gradle_used_by_scope" value="main,test"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-11/"/>
+	<classpathentry sourcepath="/Users/vineshnanu/.gradle/caches/modules-2/files-2.1/org.junit.platform/junit-platform-commons/1.10.2/513097c1d045c39db2fa42a54f830d4358936dc3/junit-platform-commons-1.10.2-sources.jar" kind="lib" path="/Users/vineshnanu/.gradle/caches/modules-2/files-2.1/org.junit.platform/junit-platform-commons/1.10.2/3197154a1f0c88da46c47a9ca27611ac7ec5d797/junit-platform-commons-1.10.2.jar">
+		<attributes>
+			<attribute name="gradle_used_by_scope" value="main,test"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/Users/vineshnanu/.gradle/caches/modules-2/files-2.1/org.junit.jupiter/junit-jupiter-api/5.10.2/b281dbb5921ce56b37b6e07a2502f663ca6c8db6/junit-jupiter-api-5.10.2-sources.jar" kind="lib" path="/Users/vineshnanu/.gradle/caches/modules-2/files-2.1/org.junit.jupiter/junit-jupiter-api/5.10.2/fb55d6e2bce173f35fd28422e7975539621055ef/junit-jupiter-api-5.10.2.jar">
+		<attributes>
+			<attribute name="gradle_used_by_scope" value="main,test"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/Users/vineshnanu/.gradle/caches/modules-2/files-2.1/com.google.code.gson/gson/2.10.1/982a90132e942f302e6fe79d6e78c4bc2e998569/gson-2.10.1-sources.jar" kind="lib" path="/Users/vineshnanu/.gradle/caches/modules-2/files-2.1/com.google.code.gson/gson/2.10.1/b3add478d4382b78ea20b1671390a858002feb6c/gson-2.10.1.jar">
+		<attributes>
+			<attribute name="gradle_used_by_scope" value="main,test"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/Users/vineshnanu/.gradle/caches/modules-2/files-2.1/org.seleniumhq.selenium/selenium-java/4.18.1/1ecb37e0b737a743a5e8860df99f402f508fd2f6/selenium-java-4.18.1-sources.jar" kind="lib" path="/Users/vineshnanu/.gradle/caches/modules-2/files-2.1/org.seleniumhq.selenium/selenium-java/4.18.1/a2145eb54c20f40fbbdaca133f7c2094b527ceda/selenium-java-4.18.1.jar">
+		<attributes>
+			<attribute name="gradle_used_by_scope" value="main,test"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/Users/vineshnanu/.gradle/caches/modules-2/files-2.1/org.opentest4j/opentest4j/1.3.0/afb8ff23cffb021c56f333953aebfe6e8818568e/opentest4j-1.3.0-sources.jar" kind="lib" path="/Users/vineshnanu/.gradle/caches/modules-2/files-2.1/org.opentest4j/opentest4j/1.3.0/152ea56b3a72f655d4fd677fc0ef2596c3dd5e6e/opentest4j-1.3.0.jar">
+		<attributes>
+			<attribute name="gradle_used_by_scope" value="main,test"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/Users/vineshnanu/.gradle/caches/modules-2/files-2.1/org.apiguardian/apiguardian-api/1.1.2/e0787a997746ac32639e0bf3cb27af8dce8a3428/apiguardian-api-1.1.2-sources.jar" kind="lib" path="/Users/vineshnanu/.gradle/caches/modules-2/files-2.1/org.apiguardian/apiguardian-api/1.1.2/a231e0d844d2721b0fa1b238006d15c6ded6842a/apiguardian-api-1.1.2.jar">
+		<attributes>
+			<attribute name="gradle_used_by_scope" value=""/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/Users/vineshnanu/.gradle/caches/modules-2/files-2.1/org.seleniumhq.selenium/selenium-chrome-driver/4.18.1/7f1a9c477ffd2ae6ef3dce0eda053bc755d20808/selenium-chrome-driver-4.18.1-sources.jar" kind="lib" path="/Users/vineshnanu/.gradle/caches/modules-2/files-2.1/org.seleniumhq.selenium/selenium-chrome-driver/4.18.1/60e771f59c512e4e81818c09705996e296b379b0/selenium-chrome-driver-4.18.1.jar">
+		<attributes>
+			<attribute name="gradle_used_by_scope" value="main,test"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/Users/vineshnanu/.gradle/caches/modules-2/files-2.1/org.seleniumhq.selenium/selenium-devtools-v120/4.18.1/f2897bfb30dc10a6ceb307360c39b381dc16fa3e/selenium-devtools-v120-4.18.1-sources.jar" kind="lib" path="/Users/vineshnanu/.gradle/caches/modules-2/files-2.1/org.seleniumhq.selenium/selenium-devtools-v120/4.18.1/2289c386c7ea8ee3011a20b903367f6b4e3d51e7/selenium-devtools-v120-4.18.1.jar">
+		<attributes>
+			<attribute name="gradle_used_by_scope" value="main,test"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/Users/vineshnanu/.gradle/caches/modules-2/files-2.1/org.seleniumhq.selenium/selenium-devtools-v121/4.18.1/9b707b29f7f25c26eb1d0bc84177d7584f332d2b/selenium-devtools-v121-4.18.1-sources.jar" kind="lib" path="/Users/vineshnanu/.gradle/caches/modules-2/files-2.1/org.seleniumhq.selenium/selenium-devtools-v121/4.18.1/ef0c6963c0f1709d2d4bae28470af3dc39b139c9/selenium-devtools-v121-4.18.1.jar">
+		<attributes>
+			<attribute name="gradle_used_by_scope" value="main,test"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/Users/vineshnanu/.gradle/caches/modules-2/files-2.1/org.seleniumhq.selenium/selenium-devtools-v122/4.18.1/4bd6bc7272da8f5bdf08703bf60575386b334a9c/selenium-devtools-v122-4.18.1-sources.jar" kind="lib" path="/Users/vineshnanu/.gradle/caches/modules-2/files-2.1/org.seleniumhq.selenium/selenium-devtools-v122/4.18.1/34f0f3ca7ae5c4b56b066bff1ccf13ddaa610beb/selenium-devtools-v122-4.18.1.jar">
+		<attributes>
+			<attribute name="gradle_used_by_scope" value="main,test"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/Users/vineshnanu/.gradle/caches/modules-2/files-2.1/org.seleniumhq.selenium/selenium-firefox-driver/4.18.1/9bc38dc2a62bc9669433652babaaf35bce5dd24d/selenium-firefox-driver-4.18.1-sources.jar" kind="lib" path="/Users/vineshnanu/.gradle/caches/modules-2/files-2.1/org.seleniumhq.selenium/selenium-firefox-driver/4.18.1/4a7cce02c049d99d8b3cdd54d6f13c58de23fcf8/selenium-firefox-driver-4.18.1.jar">
+		<attributes>
+			<attribute name="gradle_used_by_scope" value="main,test"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/Users/vineshnanu/.gradle/caches/modules-2/files-2.1/org.seleniumhq.selenium/selenium-devtools-v85/4.18.1/f3e32d7a8ed9871234a8b5de5fdd3203e95c273/selenium-devtools-v85-4.18.1-sources.jar" kind="lib" path="/Users/vineshnanu/.gradle/caches/modules-2/files-2.1/org.seleniumhq.selenium/selenium-devtools-v85/4.18.1/69c7b5c4d5c2734a1ab60010b43445214235c5b3/selenium-devtools-v85-4.18.1.jar">
+		<attributes>
+			<attribute name="gradle_used_by_scope" value="main,test"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/Users/vineshnanu/.gradle/caches/modules-2/files-2.1/org.seleniumhq.selenium/selenium-edge-driver/4.18.1/88c5d6dc2dadc73d147e014cfbc09d13ebe9fe93/selenium-edge-driver-4.18.1-sources.jar" kind="lib" path="/Users/vineshnanu/.gradle/caches/modules-2/files-2.1/org.seleniumhq.selenium/selenium-edge-driver/4.18.1/ff61796fa837f6864e5185b564819479f1bddd9b/selenium-edge-driver-4.18.1.jar">
+		<attributes>
+			<attribute name="gradle_used_by_scope" value="main,test"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/Users/vineshnanu/.gradle/caches/modules-2/files-2.1/org.seleniumhq.selenium/selenium-ie-driver/4.18.1/e7778f0daf22c4092a5098d31c0fcb3665862612/selenium-ie-driver-4.18.1-sources.jar" kind="lib" path="/Users/vineshnanu/.gradle/caches/modules-2/files-2.1/org.seleniumhq.selenium/selenium-ie-driver/4.18.1/bb254836900b0b73184d7613b377b47c77eeb99f/selenium-ie-driver-4.18.1.jar">
+		<attributes>
+			<attribute name="gradle_used_by_scope" value="main,test"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/Users/vineshnanu/.gradle/caches/modules-2/files-2.1/org.seleniumhq.selenium/selenium-safari-driver/4.18.1/3b406b02d6a388071d06efdc19b89afacd8f093d/selenium-safari-driver-4.18.1-sources.jar" kind="lib" path="/Users/vineshnanu/.gradle/caches/modules-2/files-2.1/org.seleniumhq.selenium/selenium-safari-driver/4.18.1/8e6a3183a3d1d12760bdcedf1bd90fc0c60d142c/selenium-safari-driver-4.18.1.jar">
+		<attributes>
+			<attribute name="gradle_used_by_scope" value="main,test"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/Users/vineshnanu/.gradle/caches/modules-2/files-2.1/org.seleniumhq.selenium/selenium-support/4.18.1/62d9a09f9359a73756e9b7e874aaf0a83a2a1831/selenium-support-4.18.1-sources.jar" kind="lib" path="/Users/vineshnanu/.gradle/caches/modules-2/files-2.1/org.seleniumhq.selenium/selenium-support/4.18.1/4c609ec0602c2cf356f28a029e89bf7ef7ab564f/selenium-support-4.18.1.jar">
+		<attributes>
+			<attribute name="gradle_used_by_scope" value="main,test"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/Users/vineshnanu/.gradle/caches/modules-2/files-2.1/org.seleniumhq.selenium/selenium-chromium-driver/4.18.1/1d8f2108e7b5c6708db6b97f48ea584bab8f896/selenium-chromium-driver-4.18.1-sources.jar" kind="lib" path="/Users/vineshnanu/.gradle/caches/modules-2/files-2.1/org.seleniumhq.selenium/selenium-chromium-driver/4.18.1/f76d40776a5473b84c81b4873940c211a0fb82bb/selenium-chromium-driver-4.18.1.jar">
+		<attributes>
+			<attribute name="gradle_used_by_scope" value="main,test"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/Users/vineshnanu/.gradle/caches/modules-2/files-2.1/org.seleniumhq.selenium/selenium-remote-driver/4.18.1/9c4ccd5fffb48151c70fac3387e69b983521b11/selenium-remote-driver-4.18.1-sources.jar" kind="lib" path="/Users/vineshnanu/.gradle/caches/modules-2/files-2.1/org.seleniumhq.selenium/selenium-remote-driver/4.18.1/12309bd8ccc32be31d2e5ce32a28e424c4bbfe46/selenium-remote-driver-4.18.1.jar">
+		<attributes>
+			<attribute name="gradle_used_by_scope" value="main,test"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/Users/vineshnanu/.gradle/caches/modules-2/files-2.1/org.seleniumhq.selenium/selenium-manager/4.18.1/23da4de1a4dcf6337402f054deb03151412faf82/selenium-manager-4.18.1-sources.jar" kind="lib" path="/Users/vineshnanu/.gradle/caches/modules-2/files-2.1/org.seleniumhq.selenium/selenium-manager/4.18.1/513aad0704f64aa45cda9518f0c41695fe5cf9df/selenium-manager-4.18.1.jar">
+		<attributes>
+			<attribute name="gradle_used_by_scope" value="main,test"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/Users/vineshnanu/.gradle/caches/modules-2/files-2.1/org.seleniumhq.selenium/selenium-http/4.18.1/70ea8075eb0ce1df621b67a066cbf093fdb9521f/selenium-http-4.18.1-sources.jar" kind="lib" path="/Users/vineshnanu/.gradle/caches/modules-2/files-2.1/org.seleniumhq.selenium/selenium-http/4.18.1/1d9a4d19a4a6acb66a795305d755c49e84503499/selenium-http-4.18.1.jar">
+		<attributes>
+			<attribute name="gradle_used_by_scope" value="main,test"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/Users/vineshnanu/.gradle/caches/modules-2/files-2.1/org.seleniumhq.selenium/selenium-json/4.18.1/56e40b2e00ca0ee70f581176bc6964505b90c5b4/selenium-json-4.18.1-sources.jar" kind="lib" path="/Users/vineshnanu/.gradle/caches/modules-2/files-2.1/org.seleniumhq.selenium/selenium-json/4.18.1/f75daaa9de8acc3967be8f4ba77f4c84abb7f50d/selenium-json-4.18.1.jar">
+		<attributes>
+			<attribute name="gradle_used_by_scope" value="main,test"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/Users/vineshnanu/.gradle/caches/modules-2/files-2.1/org.seleniumhq.selenium/selenium-os/4.18.1/cee08ca5f3b4a2156fd57f8333e8ab45fea2deed/selenium-os-4.18.1-sources.jar" kind="lib" path="/Users/vineshnanu/.gradle/caches/modules-2/files-2.1/org.seleniumhq.selenium/selenium-os/4.18.1/e05697c8ad755ac2ba997f09b8dd48500b0c0ce7/selenium-os-4.18.1.jar">
+		<attributes>
+			<attribute name="gradle_used_by_scope" value="main,test"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/Users/vineshnanu/.gradle/caches/modules-2/files-2.1/org.seleniumhq.selenium/selenium-api/4.18.1/eb4891f2e93ce9a33ad0c76d771e03691a6eb2eb/selenium-api-4.18.1-sources.jar" kind="lib" path="/Users/vineshnanu/.gradle/caches/modules-2/files-2.1/org.seleniumhq.selenium/selenium-api/4.18.1/9c3b460c2c8878fcf966cd0e3e253759f59ae266/selenium-api-4.18.1.jar">
+		<attributes>
+			<attribute name="gradle_used_by_scope" value="main,test"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/Users/vineshnanu/.gradle/caches/modules-2/files-2.1/com.google.auto.service/auto-service-annotations/1.1.1/b855be4f39e0fe5bb27dd137fd37dd4c4e2c2f5a/auto-service-annotations-1.1.1-sources.jar" kind="lib" path="/Users/vineshnanu/.gradle/caches/modules-2/files-2.1/com.google.auto.service/auto-service-annotations/1.1.1/da12a15cd058ba90a0ff55357fb521161af4736d/auto-service-annotations-1.1.1.jar">
+		<attributes>
+			<attribute name="gradle_used_by_scope" value="main,test"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/Users/vineshnanu/.gradle/caches/modules-2/files-2.1/com.google.guava/guava/33.0.0-jre/2cca40652185734d5a89349c471a54367fb98067/guava-33.0.0-jre-sources.jar" kind="lib" path="/Users/vineshnanu/.gradle/caches/modules-2/files-2.1/com.google.guava/guava/33.0.0-jre/161ba27964a62f241533807a46b8711b13c1d94b/guava-33.0.0-jre.jar">
+		<attributes>
+			<attribute name="gradle_used_by_scope" value="main,test"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/Users/vineshnanu/.gradle/caches/modules-2/files-2.1/io.opentelemetry.semconv/opentelemetry-semconv/1.23.1-alpha/ccfb6aacba47ba15b4d4025d19df93a5958636f/opentelemetry-semconv-1.23.1-alpha-sources.jar" kind="lib" path="/Users/vineshnanu/.gradle/caches/modules-2/files-2.1/io.opentelemetry.semconv/opentelemetry-semconv/1.23.1-alpha/218e361772670212a46be5940010222d68e66f2a/opentelemetry-semconv-1.23.1-alpha.jar">
+		<attributes>
+			<attribute name="gradle_used_by_scope" value="main,test"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/Users/vineshnanu/.gradle/caches/modules-2/files-2.1/io.opentelemetry/opentelemetry-exporter-logging/1.35.0/f64194882d1f7d360757b60dd1adcb32470885b9/opentelemetry-exporter-logging-1.35.0-sources.jar" kind="lib" path="/Users/vineshnanu/.gradle/caches/modules-2/files-2.1/io.opentelemetry/opentelemetry-exporter-logging/1.35.0/5f038bc2b9a1f415c8f74c4a35e0d92fae64c430/opentelemetry-exporter-logging-1.35.0.jar">
+		<attributes>
+			<attribute name="gradle_used_by_scope" value="main,test"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/Users/vineshnanu/.gradle/caches/modules-2/files-2.1/io.opentelemetry/opentelemetry-sdk-extension-autoconfigure/1.35.0/899333ce2b988d95ecf7607e9d19bcf730d52caa/opentelemetry-sdk-extension-autoconfigure-1.35.0-sources.jar" kind="lib" path="/Users/vineshnanu/.gradle/caches/modules-2/files-2.1/io.opentelemetry/opentelemetry-sdk-extension-autoconfigure/1.35.0/8b11eec0db81510bab424d959297173f4fc94347/opentelemetry-sdk-extension-autoconfigure-1.35.0.jar">
+		<attributes>
+			<attribute name="gradle_used_by_scope" value="main,test"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/Users/vineshnanu/.gradle/caches/modules-2/files-2.1/io.opentelemetry/opentelemetry-sdk-extension-autoconfigure-spi/1.35.0/76ee60b6736c1d8b7182832b0dedba319dee265f/opentelemetry-sdk-extension-autoconfigure-spi-1.35.0-sources.jar" kind="lib" path="/Users/vineshnanu/.gradle/caches/modules-2/files-2.1/io.opentelemetry/opentelemetry-sdk-extension-autoconfigure-spi/1.35.0/9279e70b9248b3bb68871a53da9bd2cdee318e56/opentelemetry-sdk-extension-autoconfigure-spi-1.35.0.jar">
+		<attributes>
+			<attribute name="gradle_used_by_scope" value="main,test"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/Users/vineshnanu/.gradle/caches/modules-2/files-2.1/io.opentelemetry/opentelemetry-sdk/1.35.0/734c2a957c64873380c528be290b82427845a1b4/opentelemetry-sdk-1.35.0-sources.jar" kind="lib" path="/Users/vineshnanu/.gradle/caches/modules-2/files-2.1/io.opentelemetry/opentelemetry-sdk/1.35.0/82fe6a227fb3148aae2e61978cf77f7005a66bca/opentelemetry-sdk-1.35.0.jar">
+		<attributes>
+			<attribute name="gradle_used_by_scope" value="main,test"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/Users/vineshnanu/.gradle/caches/modules-2/files-2.1/io.opentelemetry/opentelemetry-sdk-trace/1.35.0/e4f0165534aa16245f5639f667b6266ea071a89/opentelemetry-sdk-trace-1.35.0-sources.jar" kind="lib" path="/Users/vineshnanu/.gradle/caches/modules-2/files-2.1/io.opentelemetry/opentelemetry-sdk-trace/1.35.0/861b6a3c43a15ca3782f1fa17b024b9afa4b3ea6/opentelemetry-sdk-trace-1.35.0.jar">
+		<attributes>
+			<attribute name="gradle_used_by_scope" value="main,test"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/Users/vineshnanu/.gradle/caches/modules-2/files-2.1/io.opentelemetry/opentelemetry-sdk-metrics/1.35.0/7e3a25175b48283daacfe89202c3ee7e31e5b1db/opentelemetry-sdk-metrics-1.35.0-sources.jar" kind="lib" path="/Users/vineshnanu/.gradle/caches/modules-2/files-2.1/io.opentelemetry/opentelemetry-sdk-metrics/1.35.0/97942849d51081e766a29646175b752bb79d7ce0/opentelemetry-sdk-metrics-1.35.0.jar">
+		<attributes>
+			<attribute name="gradle_used_by_scope" value="main,test"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/Users/vineshnanu/.gradle/caches/modules-2/files-2.1/io.opentelemetry/opentelemetry-sdk-logs/1.35.0/b5598e1301d7811b7a5756cec6581ee27f1a0f6f/opentelemetry-sdk-logs-1.35.0-sources.jar" kind="lib" path="/Users/vineshnanu/.gradle/caches/modules-2/files-2.1/io.opentelemetry/opentelemetry-sdk-logs/1.35.0/da2122051bd95d3a36bf34f72f1b0dd9b105fd1f/opentelemetry-sdk-logs-1.35.0.jar">
+		<attributes>
+			<attribute name="gradle_used_by_scope" value="main,test"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/Users/vineshnanu/.gradle/caches/modules-2/files-2.1/io.opentelemetry/opentelemetry-sdk-common/1.35.0/8deb16faf497805794fb78719c2b93f3c1469f4f/opentelemetry-sdk-common-1.35.0-sources.jar" kind="lib" path="/Users/vineshnanu/.gradle/caches/modules-2/files-2.1/io.opentelemetry/opentelemetry-sdk-common/1.35.0/5d2bc29d8f2ef2cf5a2239ac6990a2c89118456d/opentelemetry-sdk-common-1.35.0.jar">
+		<attributes>
+			<attribute name="gradle_used_by_scope" value="main,test"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/Users/vineshnanu/.gradle/caches/modules-2/files-2.1/io.opentelemetry/opentelemetry-api/1.35.0/51ad55d49a2d41743a3a3ff5866e79c0dcb1572a/opentelemetry-api-1.35.0-sources.jar" kind="lib" path="/Users/vineshnanu/.gradle/caches/modules-2/files-2.1/io.opentelemetry/opentelemetry-api/1.35.0/388c49986bc20f3b4bea58470eb16decd230c2db/opentelemetry-api-1.35.0.jar">
+		<attributes>
+			<attribute name="gradle_used_by_scope" value="main,test"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/Users/vineshnanu/.gradle/caches/modules-2/files-2.1/io.opentelemetry/opentelemetry-context/1.35.0/81fdca29be928913f0b032eab05a5f6c620bb823/opentelemetry-context-1.35.0-sources.jar" kind="lib" path="/Users/vineshnanu/.gradle/caches/modules-2/files-2.1/io.opentelemetry/opentelemetry-context/1.35.0/6e2aa0e28c5069121cf11b2c93225942358f1423/opentelemetry-context-1.35.0.jar">
+		<attributes>
+			<attribute name="gradle_used_by_scope" value="main,test"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/Users/vineshnanu/.gradle/caches/modules-2/files-2.1/net.bytebuddy/byte-buddy/1.14.12/887a4881279830607a6179560b17a44d62fc1997/byte-buddy-1.14.12-sources.jar" kind="lib" path="/Users/vineshnanu/.gradle/caches/modules-2/files-2.1/net.bytebuddy/byte-buddy/1.14.12/6e37f743dc15a8d7a4feb3eb0025cbc612d5b9e1/byte-buddy-1.14.12.jar">
+		<attributes>
+			<attribute name="gradle_used_by_scope" value="main,test"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/Users/vineshnanu/.gradle/caches/modules-2/files-2.1/dev.failsafe/failsafe/3.3.2/570027ca5c2f3861c4270e5460001b7189a12034/failsafe-3.3.2-sources.jar" kind="lib" path="/Users/vineshnanu/.gradle/caches/modules-2/files-2.1/dev.failsafe/failsafe/3.3.2/738a986f1f0e4b6c6a49d351dddc772d1378c5a8/failsafe-3.3.2.jar">
+		<attributes>
+			<attribute name="gradle_used_by_scope" value="main,test"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/Users/vineshnanu/.gradle/caches/modules-2/files-2.1/com.google.guava/failureaccess/1.0.2/6acdafcf2dfc3b548e59dd3a4b454552aeb6ff65/failureaccess-1.0.2-sources.jar" kind="lib" path="/Users/vineshnanu/.gradle/caches/modules-2/files-2.1/com.google.guava/failureaccess/1.0.2/c4a06a64e650562f30b7bf9aaec1bfed43aca12b/failureaccess-1.0.2.jar">
+		<attributes>
+			<attribute name="gradle_used_by_scope" value="main,test"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/Users/vineshnanu/.gradle/caches/modules-2/files-2.1/com.google.guava/listenablefuture/9999.0-empty-to-avoid-conflict-with-guava/b421526c5f297295adef1c886e5246c39d4ac629/listenablefuture-9999.0-empty-to-avoid-conflict-with-guava.jar">
+		<attributes>
+			<attribute name="gradle_used_by_scope" value="main,test"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/Users/vineshnanu/.gradle/caches/modules-2/files-2.1/com.google.code.findbugs/jsr305/3.0.2/b19b5927c2c25b6c70f093767041e641ae0b1b35/jsr305-3.0.2-sources.jar" kind="lib" path="/Users/vineshnanu/.gradle/caches/modules-2/files-2.1/com.google.code.findbugs/jsr305/3.0.2/25ea2e8b0c338a877313bd4672d3fe056ea78f0d/jsr305-3.0.2.jar">
+		<attributes>
+			<attribute name="gradle_used_by_scope" value="main,test"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/Users/vineshnanu/.gradle/caches/modules-2/files-2.1/org.checkerframework/checker-qual/3.41.0/bbd6dfcb5998fdda708d32c6c5b5a570f9f788e8/checker-qual-3.41.0-sources.jar" kind="lib" path="/Users/vineshnanu/.gradle/caches/modules-2/files-2.1/org.checkerframework/checker-qual/3.41.0/8be6df7f1e9bccb19f8f351b3651f0bac2f5e0c/checker-qual-3.41.0.jar">
+		<attributes>
+			<attribute name="gradle_used_by_scope" value="main,test"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/Users/vineshnanu/.gradle/caches/modules-2/files-2.1/com.google.errorprone/error_prone_annotations/2.23.0/532ee2653e231d34f2beef55b1738fb92dc3be0e/error_prone_annotations-2.23.0-sources.jar" kind="lib" path="/Users/vineshnanu/.gradle/caches/modules-2/files-2.1/com.google.errorprone/error_prone_annotations/2.23.0/43a27853b6c7d54893e0b1997c2c778c347179eb/error_prone_annotations-2.23.0.jar">
+		<attributes>
+			<attribute name="gradle_used_by_scope" value="main,test"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/Users/vineshnanu/.gradle/caches/modules-2/files-2.1/com.google.j2objc/j2objc-annotations/2.8/74fb66e276fc42784d884d51f841e35232bc90de/j2objc-annotations-2.8-sources.jar" kind="lib" path="/Users/vineshnanu/.gradle/caches/modules-2/files-2.1/com.google.j2objc/j2objc-annotations/2.8/c85270e307e7b822f1086b93689124b89768e273/j2objc-annotations-2.8.jar">
+		<attributes>
+			<attribute name="gradle_used_by_scope" value=""/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/Users/vineshnanu/.gradle/caches/modules-2/files-2.1/org.apache.commons/commons-exec/1.3/efd2543e352e55ce5a685eed6db8af028b737905/commons-exec-1.3-sources.jar" kind="lib" path="/Users/vineshnanu/.gradle/caches/modules-2/files-2.1/org.apache.commons/commons-exec/1.3/8dfb9facd0830a27b1b5f29f84593f0aeee7773b/commons-exec-1.3.jar">
+		<attributes>
+			<attribute name="gradle_used_by_scope" value="main,test"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/Users/vineshnanu/.gradle/caches/modules-2/files-2.1/io.opentelemetry/opentelemetry-api-events/1.35.0-alpha/443713223b1b1b953dc1a1817ee31cce314d1280/opentelemetry-api-events-1.35.0-alpha-sources.jar" kind="lib" path="/Users/vineshnanu/.gradle/caches/modules-2/files-2.1/io.opentelemetry/opentelemetry-api-events/1.35.0-alpha/51c942e6d5da03fd4d144ac48320028956193689/opentelemetry-api-events-1.35.0-alpha.jar">
+		<attributes>
+			<attribute name="gradle_used_by_scope" value="main,test"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/Users/vineshnanu/.gradle/caches/modules-2/files-2.1/io.opentelemetry/opentelemetry-extension-incubator/1.35.0-alpha/ab989206692293ff1c5736eaef8e20668537003f/opentelemetry-extension-incubator-1.35.0-alpha-sources.jar" kind="lib" path="/Users/vineshnanu/.gradle/caches/modules-2/files-2.1/io.opentelemetry/opentelemetry-extension-incubator/1.35.0-alpha/72720d7880110d02aad6d69066cc0311c568f17d/opentelemetry-extension-incubator-1.35.0-alpha.jar">
+		<attributes>
+			<attribute name="gradle_used_by_scope" value="main,test"/>
+		</attributes>
+	</classpathentry>
+</classpath>

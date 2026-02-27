@@ -1,0 +1,1425 @@
+{
+  "title": "Reportly Demo - Multi-Platform Test Report",
+  "description": "Comprehensive test execution report showcasing Selenium, Appium (Android & iOS) results with AI analysis",
+  "theme": "dark",
+  "generated_at": "2026-02-27T21:52:58.028215",
+  "generated_at_display": "February 27, 2026 at 09:52 PM",
+  "summary": {
+    "total": 12,
+    "passed": 7,
+    "failed": 2,
+    "skipped": 1,
+    "broken": 1,
+    "blocked": 1,
+    "warning": 0,
+    "pass_rate": 58.3,
+    "total_duration_ms": 71180,
+    "total_duration_display": "1m 11s",
+    "suite_count": 3
+  },
+  "platform_stats": {
+    "Chrome 121.0 on macOS": {
+      "total": 4,
+      "passed": 2,
+      "failed": 1,
+      "skipped": 1
+    },
+    "Firefox 122.0 on Windows": {
+      "total": 1,
+      "passed": 1,
+      "failed": 0,
+      "skipped": 0
+    },
+    "Pixel 7 Android 14": {
+      "total": 3,
+      "passed": 2,
+      "failed": 1,
+      "skipped": 0
+    },
+    "iPhone 15 Pro iOS 17.2": {
+      "total": 4,
+      "passed": 2,
+      "failed": 1,
+      "skipped": 1
+    }
+  },
+  "category_stats": {
+    "Authentication": {
+      "total": 4,
+      "passed": 2,
+      "failed": 1
+    },
+    "Search": {
+      "total": 1,
+      "passed": 1,
+      "failed": 0
+    },
+    "Checkout": {
+      "total": 2,
+      "passed": 0,
+      "failed": 1
+    },
+    "Performance": {
+      "total": 2,
+      "passed": 2,
+      "failed": 0
+    },
+    "Notifications": {
+      "total": 1,
+      "passed": 0,
+      "failed": 1
+    },
+    "Profile": {
+      "total": 1,
+      "passed": 1,
+      "failed": 0
+    },
+    "Navigation": {
+      "total": 1,
+      "passed": 1,
+      "failed": 0
+    }
+  },
+  "failure_categories": {
+    "Timeout": 1,
+    "Element Not Found": 1,
+    "Configuration Error": 1
+  },
+  "all_tags": [
+    "android",
+    "applepay",
+    "biometric",
+    "blocked",
+    "checkout",
+    "cross-browser",
+    "deeplink",
+    "e2e",
+    "faceid",
+    "google",
+    "ios",
+    "launch",
+    "login",
+    "navigation",
+    "notification",
+    "oauth",
+    "p0",
+    "payment",
+    "performance",
+    "profile",
+    "push",
+    "registration",
+    "regression",
+    "search",
+    "skipped",
+    "smoke",
+    "upload"
+  ],
+  "ai_analyses": [
+    {
+      "test_name": "Complete Checkout with Credit Card",
+      "test_id": "cf7c227b",
+      "analysis": {
+        "failure_category": "Timeout",
+        "root_cause": "The 'Place Order' button was not clickable within the 15-second timeout. This likely indicates the button is either obscured by a loading overlay, disabled due to incomplete form validation, or a JavaScript error prevented the button from becoming interactive.",
+        "suggestion": "1. Check if a loading spinner/overlay is covering the button after entering card details. 2. Verify the payment processor callback completes successfully. 3. Add an explicit wait for any loading overlay to disappear before clicking. 4. Check browser console for JavaScript errors.",
+        "confidence": 0.87,
+        "similar_failures": [
+          "Payment gateway timeout on staging environment",
+          "Loading overlay blocking checkout actions",
+          "Button disabled state not clearing after form validation"
+        ]
+      }
+    },
+    {
+      "test_name": "Push Notification Handling",
+      "test_id": "92838a5c",
+      "analysis": {
+        "failure_category": "Element Not Found",
+        "root_cause": "Push notification was not delivered to the Android emulator. Emulators often have issues with Google Cloud Messaging/Firebase Cloud Messaging. The notification element could not be found because it never appeared.",
+        "suggestion": "1. Verify Firebase/GCM is properly configured for the emulator. 2. Use a real device for push notification tests. 3. Consider using Android's NotificationListenerService to verify delivery. 4. Add a retry mechanism with longer wait time.",
+        "confidence": 0.82,
+        "similar_failures": [
+          "FCM delivery failure on emulators",
+          "Notification permission not granted",
+          "Test notification service timeout"
+        ]
+      }
+    },
+    {
+      "test_name": "Login with Face ID",
+      "test_id": "c7fa2d68",
+      "analysis": {
+        "failure_category": "Configuration Error",
+        "root_cause": "Face ID is not enrolled on the iOS simulator. Biometric authentication requires explicit enrollment setup on simulators before tests can use it.",
+        "suggestion": "1. Enroll Face ID on simulator: Features > Face ID > Enrolled. 2. Use Appium's mobile:enrollBiometric command before the test. 3. Add a setup step that checks for biometric availability and skips gracefully.",
+        "confidence": 0.92,
+        "similar_failures": [
+          "Biometric not available on simulator",
+          "Touch ID enrollment missing",
+          "LAError.biometryNotEnrolled on test devices"
+        ]
+      }
+    }
+  ],
+  "suites": [
+    {
+      "name": "Web Application - Chrome",
+      "suite_id": "cbab73a0",
+      "description": "End-to-end browser tests on Chrome",
+      "start_time": "2026-02-27T21:52:55.515549",
+      "end_time": "2026-02-27T21:52:57.863402",
+      "duration_ms": 2347.853,
+      "total": 5,
+      "passed": 3,
+      "failed": 1,
+      "skipped": 1,
+      "broken": 0,
+      "blocked": 0,
+      "warning": 0,
+      "pass_rate": 60.0,
+      "platforms": [
+        "Chrome 121.0 on macOS",
+        "Firefox 122.0 on Windows"
+      ],
+      "categories": [
+        "Checkout",
+        "Authentication",
+        "Search"
+      ],
+      "tags": [
+        "checkout",
+        "cross-browser",
+        "e2e",
+        "google",
+        "login",
+        "oauth",
+        "p0",
+        "payment",
+        "registration",
+        "regression",
+        "search",
+        "skipped",
+        "smoke"
+      ],
+      "environment": {
+        "name": "Staging",
+        "url": "https://staging.myapp.com",
+        "build_number": "build-4521",
+        "build_url": "https://ci.example.com/builds/4521",
+        "branch": "release/2.5.0",
+        "commit_hash": "a3f8c2d",
+        "ci_tool": "GitHub Actions",
+        "runner": "ubuntu-latest",
+        "triggered_by": "merge to release branch"
+      },
+      "tests": [
+        {
+          "name": "User Login with Valid Credentials",
+          "test_id": "e9e448fe",
+          "status": "passed",
+          "suite_name": "Web Application - Chrome",
+          "description": "",
+          "category": "Authentication",
+          "tags": [
+            "login",
+            "smoke",
+            "p0",
+            "regression"
+          ],
+          "priority": "Critical",
+          "platform": {
+            "platform_type": "web",
+            "os_name": "macOS",
+            "os_version": "14.2",
+            "browser_name": "Chrome",
+            "browser_version": "121.0",
+            "device_name": "",
+            "device_udid": "",
+            "app_name": "",
+            "app_version": "",
+            "automation_name": "",
+            "screen_resolution": "1920x1080",
+            "extra": {}
+          },
+          "start_time": "2026-02-27T21:37:55.515520",
+          "end_time": "2026-02-27T21:37:58.715520",
+          "duration_ms": 3200,
+          "steps": [
+            {
+              "name": "Navigate to login page",
+              "status": "passed",
+              "description": "GET https://staging.myapp.com/login",
+              "timestamp": "2026-02-27T21:52:55.515567",
+              "duration_ms": 450,
+              "error_message": "",
+              "attachments": [],
+              "sub_steps": []
+            },
+            {
+              "name": "Verify login form visible",
+              "status": "passed",
+              "description": "",
+              "timestamp": "2026-02-27T21:52:55.515569",
+              "duration_ms": 120,
+              "error_message": "",
+              "attachments": [],
+              "sub_steps": []
+            },
+            {
+              "name": "Enter email address",
+              "status": "passed",
+              "description": "",
+              "timestamp": "2026-02-27T21:52:55.515570",
+              "duration_ms": 200,
+              "error_message": "",
+              "attachments": [],
+              "sub_steps": []
+            },
+            {
+              "name": "Enter password",
+              "status": "passed",
+              "description": "",
+              "timestamp": "2026-02-27T21:52:55.515572",
+              "duration_ms": 180,
+              "error_message": "",
+              "attachments": [],
+              "sub_steps": []
+            },
+            {
+              "name": "Click Sign In button",
+              "status": "passed",
+              "description": "",
+              "timestamp": "2026-02-27T21:52:55.515572",
+              "duration_ms": 50,
+              "error_message": "",
+              "attachments": [],
+              "sub_steps": []
+            },
+            {
+              "name": "Wait for dashboard redirect",
+              "status": "passed",
+              "description": "Waited for URL to contain /dashboard",
+              "timestamp": "2026-02-27T21:52:55.515574",
+              "duration_ms": 1200,
+              "error_message": "",
+              "attachments": [],
+              "sub_steps": []
+            },
+            {
+              "name": "Verify welcome message displayed",
+              "status": "passed",
+              "description": "",
+              "timestamp": "2026-02-27T21:52:55.515575",
+              "duration_ms": 80,
+              "error_message": "",
+              "attachments": [],
+              "sub_steps": []
+            }
+          ],
+          "error_message": "",
+          "stack_trace": "",
+          "attachments": [
+            {
+              "name": "dashboard_after_login",
+              "type": "screenshot",
+              "data": "iVBORw0KGgoAAAANSUhEUgAAAZAAAAEECAIAAACJKvXOAAAUkklEQVR4nO3ceVzUdf7A8e8w3LdyCB54gMohIoLgCojiUSmeq2klqam7tWuHpWllW9tmnrlt29q1lqam9jM1NdK8E/BITdE88QIVuUHkZpjfY/jWOOsxUGb61tfzL/h+vw6f75cPL77zmUGNd7S/AgASWNzpAQBAfREsAGIQLABiECwAYhAsAGIQLABiECwAYhAsAGIQLABiWJrfHew+8PcaCQAYHMpdrdwEd1gA7pU7rDqDBwC/lTqf0nGHBUAMggVADIIFQAyCBUAMggVADIIFQAyCBUAMggVADIIFQAyCBUAMggVADIIFQAyCBUAMggVADIIFQAyCBUAMggVADIIFQAyCBUAMggVADIIFQAyCBUAMggVADIIFQAyCBUAMggVADIIFQAyCBUAMggVADIIFQAyCBUAMggVADIIFQAyCBUAMggVADIIFQAyCBUAMggVADIIFQAyCBUAMggVADIIFQAyCBUAMggVADIIFQAyCBUAMggVADIIFQAyCBUAMggVADIIFQAyCBUAMggVADIIFQAyCBUAMggVADIIFQAyCBUAMggVADIIFQAyCBUAMggVADIIFQAyCBUAMggVADIIFQAyCBUAMggVADIIFQAyCBUAMggVADIIFQAyCBUAMggVADIIFQAyCBUAMggVADIIFQAyCBUAMggVADIIFQAyCBUAMggVADIIFQAyCBUAMggVADIIFQAyCBUAMggVADIIFQAyCBUAMggVADIIFQAyCBUAMggVADIIFQAyCBUAMggVADIIFQAyCBUAMggVADIIFQAyCBUAMggVADIIFQAyCBUAMggVADIIFQAxL5X7SK/KBvwx92nSLrkZXWFyQejL1q+0rz2We/a2+0NQxr4UFdHrklSHlFeU3POC9yR9oLbRPTR+n3AU+euWTkrKSCXP/58r8UoPjhib0GbkoceHKLf+n3B7qVR352qOXSy7/6gfxbxEwoNtg/+YBTg5OZeWlp86nbdrzbdKBHb/pSHG73F/Bup7WQuvm4t49PK5raNd3l7/z3f5td3pEuI3iOvUc//CzGo1G/dTR3imkTWhIm9DoDrGzF83Q6aq5+ne5+zFY63asmf/VR+rHNlY2Pt7N+8UMiAmNfWb4hAvZ50+dT7vTA8SNvTn/77dyaRo4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",
+              "mime_type": "image/png"
+            }
+          ],
+          "ai_analysis": null,
+          "retry_info": null,
+          "parameters": {
+            "username": "testuser@example.com",
+            "env": "staging"
+          },
+          "metadata": {},
+          "links": {
+            "jira": "AUTH-1234",
+            "testcase": "TC-001"
+          },
+          "screenshot_count": 1
+        },
+        {
+          "name": "Product Search and Filter",
+          "test_id": "0bdb5108",
+          "status": "passed",
+          "suite_name": "Web Application - Chrome",
+          "description": "",
+          "category": "Search",
+          "tags": [
+            "search",
+            "regression"
+          ],
+          "priority": "High",
+          "platform": {
+            "platform_type": "web",
+            "os_name": "macOS",
+            "os_version": "14.2",
+            "browser_name": "Chrome",
+            "browser_version": "121.0",
+            "device_name": "",
+            "device_udid": "",
+            "app_name": "",
+            "app_version": "",
+            "automation_name": "",
+            "screen_resolution": "1920x1080",
+            "extra": {}
+          },
+          "start_time": "2026-02-27T21:37:59.515520",
+          "end_time": "2026-02-27T21:38:01.515520",
+          "duration_ms": 2000,
+          "steps": [
+            {
+              "name": "Navigate to products page",
+              "status": "passed",
+              "description": "",
+              "timestamp": "2026-02-27T21:52:57.857468",
+              "duration_ms": 600,
+              "error_message": "",
+              "attachments": [],
+              "sub_steps": []
+            },
+            {
+              "name": "Enter search query 'wireless headphones'",
+              "status": "passed",
+              "description": "",
+              "timestamp": "2026-02-27T21:52:57.857472",
+              "duration_ms": 300,
+              "error_message": "",
+              "attachments": [],
+              "sub_steps": []
+            },
+            {
+              "name": "Apply price filter $50-$200",
+              "status": "passed",
+              "description": "",
+              "timestamp": "2026-02-27T21:52:57.857475",
+              "duration_ms": 200,
+              "error_message": "",
+              "attachments": [],
+              "sub_steps": []
+            },
+            {
+              "name": "Verify search results count > 0",
+              "status": "passed",
+              "description": "",
+              "timestamp": "2026-02-27T21:52:57.857478",
+              "duration_ms": 150,
+              "error_message": "",
+              "attachments": [],
+              "sub_steps": []
+            },
+            {
+              "name": "Verify filter badge displayed",
+              "status": "passed",
+              "description": "",
+              "timestamp": "2026-02-27T21:52:57.857480",
+              "duration_ms": 100,
+              "error_message": "",
+              "attachments": [],
+              "sub_steps": []
+            }
+          ],
+          "error_message": "",
+          "stack_trace": "",
+          "attachments": [
+            {
+              "name": "search_results",
+              "type": "screenshot",
+              "data": "iVBORw0KGgoAAAANSUhEUgAAAZAAAAEECAIAAACJKvXOAAARA0lEQVR4nO3ceVzUdf7A8e8M943DIWAgN6gwyiWCRwKeKatmWpa62qGrnWZp1m/9be3WVtq1h5Va7f4qc7XLI5cfqaAmSipq6YYmal4gyI0Mx8D8HvBtJ9aMAUR7vPu9nn8x12e+x2NefL5fvowmIHqUAgASaH/uBQCAjiJYAMQgWADEIFgAxCBYAMQgWADEIFgAxCBYAMQgWADEsG7/4ciQ2Bu1JADQIr8gT/kJzLAA/FJmWBaDBwDdxeIhHTMsAGIQLABiECwAYhAsAGIQLABiECwAYhAsAGIQLABiECwAYhAsAGIQLABiECwAYhAsAGIQLABiECwAYhAsAGIQLABiECwAYhAsAGIQLABiECwAYhAsAGIQLABiECwAYhAsAGIQLABiECwAYhAsAGIQLABiECwAYhAsAGIQLABiECwAYhAsAGIQLABiECwAYhAsAGIQLABiECwAYhAsAGIQLABiECwAYhAsAGIQLABiECwAYhAsAGIQLABiECwAYhAsAGIQLABiECwAYhAsAGIQLABiECwAYhAsAGIQLABiECwAYhAsAGIQLABiECwAYhAsAGIQLABiECwAYhAsAGIQLABiECwAYhAsAGIQLABiECwAYhAsAGIQLABiECwAYhAsAGIQLABiECwAYhAsAGIQLABiECwAYhAsAGIQLABiECwAYhAsAGIQLABiECwAYhAsAGIQLABiECwAYhAsAGIQLABiECwAYhAsAGIQLABiECwAYhAsAGIQLABiECwAYhAsAGIQLABiECwAYhAsAGIQLABiECwAYhAsAGIQLABiECwAYhAsAGIQLABiECwAYlj/3AvwyxEREpw+ekRESLCzs7PBYDj53ZntX+Tk7Dvw8y7VEw/Oj9VHzXxgQV19fQdfEhka8szihVfc2dTcXF1dc6zg5KbMrccLTio3xCNz7klOiJvz2BMVlVXXPlqcPnrxg/OuuLPRaDxfWLRl6/bsnL3X/ha43phhdY/hyYOeWbxwYMwAN1dXK63W2clJ37fPI3PueXz+XCsrK0U+K63W3c01MXbAM4sejYmOuvELMHTQwHWrVoxJHd69w9pYWwf63zR/9swp6eO6d2RcD8ywukEPN7d7p08zNjWt+fjT3AOHKqqqXJyc4vpHT79tUkJM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",
+              "mime_type": "image/png"
+            }
+          ],
+          "ai_analysis": null,
+          "retry_info": null,
+          "parameters": {},
+          "metadata": {},
+          "links": {
+            "jira": "SRCH-456"
+          },
+          "screenshot_count": 1
+        },
+        {
+          "name": "Complete Checkout with Credit Card",
+          "test_id": "cf7c227b",
+          "status": "failed",
+          "suite_name": "Web Application - Chrome",
+          "description": "",
+          "category": "Checkout",
+          "tags": [
+            "checkout",
+            "payment",
+            "p0",
+            "e2e"
+          ],
+          "priority": "Critical",
+          "platform": {
+            "platform_type": "web",
+            "os_name": "macOS",
+            "os_version": "14.2",
+            "browser_name": "Chrome",
+            "browser_version": "121.0",
+            "device_name": "",
+            "device_udid": "",
+            "app_name": "",
+            "app_version": "",
+            "automation_name": "",
+            "screen_resolution": "1920x1080",
+            "extra": {}
+          },
+          "start_time": "2026-02-27T21:38:02.515520",
+          "end_time": "2026-02-27T21:38:20.515520",
+          "duration_ms": 18700,
+          "steps": [
+            {
+              "name": "Add item to cart",
+              "status": "passed",
+              "description": "",
+              "timestamp": "2026-02-27T21:52:57.860773",
+              "duration_ms": 800,
+              "error_message": "",
+              "attachments": [],
+              "sub_steps": []
+            },
+            {
+              "name": "Navigate to checkout",
+              "status": "passed",
+              "description": "",
+              "timestamp": "2026-02-27T21:52:57.860776",
+              "duration_ms": 500,
+              "error_message": "",
+              "attachments": [],
+              "sub_steps": []
+            },
+            {
+              "name": "Fill shipping address",
+              "status": "passed",
+              "description": "",
+              "timestamp": "2026-02-27T21:52:57.860778",
+              "duration_ms": 1200,
+              "error_message": "",
+              "attachments": [],
+              "sub_steps": []
+            },
+            {
+              "name": "Select shipping method",
+              "status": "passed",
+              "description": "",
+              "timestamp": "2026-02-27T21:52:57.860779",
+              "duration_ms": 300,
+              "error_message": "",
+              "attachments": [],
+              "sub_steps": []
+            },
+            {
+              "name": "Enter credit card details",
+              "status": "passed",
+              "description": "",
+              "timestamp": "2026-02-27T21:52:57.860781",
+              "duration_ms": 900,
+              "error_message": "",
+              "attachments": [],
+              "sub_steps": []
+            },
+            {
+              "name": "Click Place Order button",
+              "status": "failed",
+              "description": "",
+              "timestamp": "2026-02-27T21:52:57.860784",
+              "duration_ms": 15000,
+              "error_message": "TimeoutException: Element '#order-confirm-btn' not clickable after 15s",
+              "attachments": [],
+              "sub_steps": []
+            }
+          ],
+          "error_message": "TimeoutException: Element '#order-confirm-btn' not clickable within 15 seconds. The button may be obscured by an overlay or not yet enabled.",
+          "stack_trace": "Traceback (most recent call last):\n  File \"tests/test_checkout.py\", line 89, in test_complete_checkout\n    WebDriverWait(driver, 15).until(EC.element_to_be_clickable((By.CSS_SELECTOR, '#order-confirm-btn')))\n  File \"selenium/webdriver/support/wait.py\", line 95, in until\n    raise TimeoutException(message, screen, stacktrace)\nselenium.common.exceptions.TimeoutException: Message: Element '#order-confirm-btn' not clickable after 15 seconds\nStacktrace:\n    at Object.throwDecodedError (node:internal/deps/undici/undici:12618:13)\n    at processResponse (node:internal/deps/undici/undici:10090:41)",
+          "attachments": [
+            {
+              "name": "checkout_failure",
+              "type": "screenshot",
+              "data": "iVBORw0KGgoAAAANSUhEUgAAAZAAAAEECAIAAACJKvXOAAAOcElEQVR4nO3ae1zUZb7A8WdguDjIVZBQQTmIhKKsCGoKhphH8ZLidZPiWK7upuuezrqldvFQZuumZlq+umxZZrmFlp28Ft5vqWSJJIWa4B0E5CIMlwFnX8PwGuelE8zuMeWbn/erP4bfPPPz6QE+PL/fjGZ0UJACAAkc7vQEAMBeBAuAGAQLgBgEC4AYBAuAGAQLgBgEC4AYBAuAGAQLgBjapp/WR026XTMBABPdt2vUz2CHBeDXssNqNngAcKs0e0nHDguAGAQLgBgEC4AYBAuAGAQLgBgEC4AYBAuAGAQLgBgEC4AYBAuAGAQLgBgEC4AYBAuAGAQLgBgEC4AYBAuAGAQLgBgEC4AYBAuAGAQLgBgEC4AYBAuAGAQLgBgEC4AYBAuAGAQLgBgEC4AYBAuAGAQLgBgEC4AYBAuAGAQLgBgEC4AYBAuAGAQLgBgEC4AYBAuAGAQLgBgEC4AYBAuAGAQLgBgEC4AYBAuAGAQLgBgEC4AYBAuAGAQLgBgEC4AYBAuAGAQLgBgEC4AYBAuAGAQLgBgEC4AYBAuAGAQLgBgEC4AYBAuAGAQLgBgEC4AYBAuAGAQLgBgEC4AYBAuAGAQLgBgEC4AYBAuAGAQLgBgEC4AYBAuAGAQLgBgEC4AYBAuAGAQLgBgEC4AYBAuAGAQLgBgEC4AYBAuAGAQLgBgEC4AYBAuAGAQLgBgEC4AYBAuAGAQLgBgEC4AYBAuAGAQLgBgEC4AYBAuAGAQLgBgEC4AYBAuAGAQLgBgEC4AYBAuAGAQLgBgEC4AYBAuAGAQLgBgEC4AYBAuAGAQLgBgEC4AYBAuAGAQLgBgEC4AYBAuAGAQLgBjaOz2BFic0pn+PgYkBIWE6D8/aqqqCvFNZu7Z+v3ebMhrNA8bPeSkkqu8rKcNrq6t+iQlMSl3q36nz0skjVcuWNCs1rM+AJgbUGwyLkoeYl2vZlKSqq2VKrM697hs3e0ETA96dNaXwXO5tnNFdih3WdY5OTkmznh/75PzQ6H6tvds4OGpdW7t3jOg54o9zxz4538HxVxL3bnGD56Tt6DV09J2eSEvBggjyK/klvCWGP/5UWJ+4mir9gU9X5xzcc7WkqLWXT3BkzICJj4VG94tPnrrjgzfu9BxbkPVLUq2/nPbqKp92gW/MmFRWmG99fO3Cp9WvReaOzVveXHynZ3FXI1iNOnXv1TV2UG2V/sNnZ1r29mWFBUe3bbx4MjtlwYroxDGHN6RVlBQ3vkCj6Tv6oZ6DH3Tz8i4+f2Zv2vunjnxtWVYHR23vEeO6xw/1ahtQWVby49e79n+6ukZfaRng6uYeN/HRsD5xrm6tSwsufb8n/ZvNn9YZam/+Dnn6+T/8wnI3L++1C5/OzfxGKeWic+s/9pGwvve39m5TUVKcc3C39cknpS4N6hppfcXq5uUz8+11OYf2rF+SmrJgRbvQcKXU4Mf+NPixP702bVxl6RX1S7K+JDQ/XvxwYnRiUq+hSU6urqeOHExfubzeYIh/eFq32EGOTs7nsjO/fOfV8qLL9i9my1mQUU88F95v4KLkIXETHo1MGLZv7ftHtn5u82Cz0/65V93lCFajqCGjlFIHPvvo5jsRl8+czt6/s8fAocGRMVm7tpoPDvjtY9GJY8yP/YNDxz45f9Xcx/NzT5pS5uAw9qn5IT37mJ/18G3be+SELr1jVz09w3wfx9XN/ZEXl7dp39E8wDewU3zy1A73Rqz72zM3/NM6T6/fPrvI3cd3w+sLzbVydWud/MIyv8Bg8wBPP//eIyeERPVd/dzM6oqrSoK4CZP7PDjR/DhiwGCNRjm5tuoSE2s+EhLVd+yT89+b/Xvzl3YsZotbkEEp080/Tk0ctHPaNk91NyNYDTSaoG6RSqnsfdttLtPmN17e/MbL1kd6PjBy10dvH9u51cnF9YHJM0Jj+ncfmGgOVnRiUkjPPkXn8r5859X80znuPn4JKY937nVffPJU8wVFfPLUNu07njl+9Kt3lpUX5QeE3Dti5tzOve4LCAm79FOO5Z9w0blNfOZl74AOO1e/eXxvuvlg/KSpfoHBZ44fTX93WUnBRZ+AwAcmz+gY0XPQf03ftOJvzX6/P3hmRre4wSNnzk1fufxO/cWOGjJqy1tLcg7ubtsxZOzsBd3iBtcZare+teSHr3d5tQ0YP/ev/sGhvoGdis7l2bWYLW9BeiQkfvnOqz8c2GmdnhsO2jltm6e6m3HT3cRV19rVzb26sqK8+PqVSNMOrP/o4P99rC8vLSvM3/b+CvNGyfxUzPDxdbU1axfOPffDMUNNzZVL5z9f+oK+rDT8vniNg4NzK13EgMG1VfrPX0ktvnDGUFNzNjtz54dvK6UCw3tYzq91dhk3+yX/Tp0zNq07tCHNfND02vghhprq9YvnFZ0/U28wFJ49/dmi56orK7rFDnJycVUS7F/3Qeb2TdWVFWezM3MzM5RSGRvXHt2+qUZfWZB36vjebUopb/929i7mbVyQyIRhc9J23PxffPJU62GHv0j77qsvbkiM9UH7p23zVHczgmXi5OKilLK+LdKsE4f2Wh6XFxUoo9FF56aU8vJv5+Hb9sKJ7LLCAsuAutqa3GMZzq103v7tAkLCtM4upzMzqq6WWwb8sH/HwgkJhzeuNX+p0WiSZqUGhncvyb+w3epOf7vO92qdnH88uLu6ssJysKZKn5uZ4eCo9e/UWUlgfbOvqtx0WXfm+++uH6kwLYtzK509i9kyFyTn0J6mD9o/bZunuptxSagsqXJyNmXLTlevFFkeGxs4OJjq7+nnr5TqGNFzTtqOm1/l2trDw9c04MqFc02c3LmVLqRnH6PR6H1P+04RUXlZR8zHPXzbKqWKz5+9YXx5caFSqpW7h82zaTQa+/+/lFJ+gcFTlrxr+TIv69uP5/9F3TrX37gwLd01pVS1jT8VGvsW83YsyL/6LmGFrdv21gftn7bNU93N2GGZ1FZXVVde1Xl66Ty8bC5TzPBxc9J23P/QFMuRa/V1thfU0bGJ5XbUah2dnEzbBFtvCForyD25fvH/KqUSUh63/IKZPwt282tdXFs1HDfYPJVzw7Mtx7X6ejtHNruYQhfk35s22GFddzY7s0tMbHi/eJt3XsP7xSulzuccb/aHRl9W2rCT37t+iSk3NzM30aNh7/Bz6gy1n7w0W19Wmpv5TXBkdI+EYZnbN5kulxreF7Pc37Fo08F0+6zxA1DmT+RbbSK8bhrftMJzuQsnJKgWwI7F9LwNC3LL2fV9hC3ssBpl7TR9XiF2/GRPv3tuWKOusYPahXYtL76cd8z0wYKmFZ7Lq63SB4Z3t/4z7uConbr0/b98uMVRq7106kdlNHaJ7u+o1d5wN9fy6fN6g8H8u7p7zd+V0Thg4qPms11seG14v4FaJ2fLaz39/DvcG1FRUlxy6bxSylBTbQpiGz/LgLA+cUqmZhdT6ILYM23YRLAanfzmQF7WkVbuHikLXv/NAyPcfXwdHLWefv79x6UMnz5bKbXtvdfr62xfBlq7Vl93bOcWnYdX0qxUv8BgJxeXth1Dxs9Z0KZ9UNauL+vr6sqLL5/OzNB5eg2fPtvdx9fJxTU0ut/AR/5gNBp/+u7QDWfLzz3548Hdbl4+fUc/ZLpxVlyYe+yIztNr1BPPed/T3sFR27bjf4x6Yp5Go/kufYOxYStRkn9BKXX/Q7/TeXq56Nx6jxgfMeA/zU81zvCa6YrMO6DDv30r57ZpdjGFLog904ZN3HS/bv2S1PFz/9ohLGLotD9br5HRaExfufzE4X3KPns+eS+o22+CI2OmLImxHCw6f2b3PxrvZKevfC1lwYqusYO6xg6yDDi0Ia204NLNZ9v98couveN6jxh/NH1jefHlr95d9siLr4XG9A+N6W8Zk/9TzqEvPjE/ztr9Va+hSdYD9q1d1W9MsmVw2WXTFUd04pjoxDG34ZPu/0/NLubtXJDIhGGRCcNsPvXZonknMuz9CbFn2rCJHdZ1NfrKNan/s+XNxWezM6srK8y7oe/3pL/31LR/6SOFtVX6j+b99+GNa69eKao3GEoLLh7ekLb6mRnVlY2fpinJv7D62T+eyNhXU6Wv0VdePJn9xbIXd374ls2zlVw6f2zHZq2zy/2Tfmd+7aq504/v3VZ1tay+rq604OLX69esef7PdbU15vEFuSc/WzyvIO9UvcFQUVK855OV+9d9YH7TzeziyeysXVvNF0otnz2LKXFBmp02bNKMDgpSP08fNcl0a/PbNU2MAYBbotngsMMCIAbBAiAGwQIgBsECIAbBAiAGwQIgBsECIAbBAiAGwQIgBsECIAbBAiAGwQIgBsECIAbBAiAGwQIgBsECIAbBAiAGwQIgBsECIAbBAiAGwQIgBsECIAbBAiAGwQIgBsECIAbBAiAGwQIgBsECIAbBAiAGwQIgBsECIAbBAiAGwQIgBsECIAbBAiAGwQIgBsECIAbBAiAGwQIgBsECIAbBAiAGwQIgBsECIAbBAiAGwQIgBsECIAbBAiAGwQIgBsECIAbBAiAGwQIgBsECIAbBAiAGwQIgBsECIAbBAiAGwQIgBsECIAbBAiAGwQIgBsECIAbBAiAGwQIgBsECIAbBAiAGwQIgBsECIAbBAiAGwQIgBsECIAbBAiAGwQIgBsECIAbBAiAGwQIgBsECIAbBAiAGwQIgBsECIAbBAiAGwQIgBsECIAbBAiAGwQIgBsECIAbBAiAGwQIgBsECIAbBAiAGwQIgBsECIAbBAiAGwQIgBsECIAbBAiAGwQIgBsECIAbBAiAGwQIgBsECIAbBAiAGwQIgBsECIAbBAiAGwQIgBsECIAbBAiAGwQIgBsECIAbBAiCG1p5B+qhJv/xMAKAZ7LAAiKEZHRR0p+cAAHZhhwVADIIFQAyCBUAMggVADIIFQAyCBUAMggVADIIFQEnxT2hFHUka98D5AAAAAElFTkSuQmCC",
+              "mime_type": "image/png"
+            }
+          ],
+          "ai_analysis": {
+            "failure_category": "Timeout",
+            "root_cause": "The 'Place Order' button was not clickable within the 15-second timeout. This likely indicates the button is either obscured by a loading overlay, disabled due to incomplete form validation, or a JavaScript error prevented the button from becoming interactive.",
+            "suggestion": "1. Check if a loading spinner/overlay is covering the button after entering card details. 2. Verify the payment processor callback completes successfully. 3. Add an explicit wait for any loading overlay to disappear before clicking. 4. Check browser console for JavaScript errors.",
+            "confidence": 0.87,
+            "similar_failures": [
+              "Payment gateway timeout on staging environment",
+              "Loading overlay blocking checkout actions",
+              "Button disabled state not clearing after form validation"
+            ]
+          },
+          "retry_info": null,
+          "parameters": {
+            "payment_method": "credit_card",
+            "card_type": "Visa"
+          },
+          "metadata": {},
+          "links": {
+            "jira": "CHK-789"
+          },
+          "screenshot_count": 1
+        },
+        {
+          "name": "New User Registration Flow",
+          "test_id": "5dbcd4d1",
+          "status": "passed",
+          "suite_name": "Web Application - Chrome",
+          "description": "",
+          "category": "Authentication",
+          "tags": [
+            "registration",
+            "cross-browser",
+            "regression"
+          ],
+          "priority": "High",
+          "platform": {
+            "platform_type": "web",
+            "os_name": "Windows",
+            "os_version": "11",
+            "browser_name": "Firefox",
+            "browser_version": "122.0",
+            "device_name": "",
+            "device_udid": "",
+            "app_name": "",
+            "app_version": "",
+            "automation_name": "",
+            "screen_resolution": "1920x1080",
+            "extra": {}
+          },
+          "start_time": "2026-02-27T21:38:21.515520",
+          "end_time": "2026-02-27T21:38:26.515520",
+          "duration_ms": 4400,
+          "steps": [
+            {
+              "name": "Navigate to registration page",
+              "status": "passed",
+              "description": "",
+              "timestamp": "2026-02-27T21:52:57.863367",
+              "duration_ms": 500,
+              "error_message": "",
+              "attachments": [],
+              "sub_steps": []
+            },
+            {
+              "name": "Fill registration form",
+              "status": "passed",
+              "description": "",
+              "timestamp": "2026-02-27T21:52:57.863370",
+              "duration_ms": 1500,
+              "error_message": "",
+              "attachments": [],
+              "sub_steps": []
+            },
+            {
+              "name": "Accept terms and conditions",
+              "status": "passed",
+              "description": "",
+              "timestamp": "2026-02-27T21:52:57.863372",
+              "duration_ms": 100,
+              "error_message": "",
+              "attachments": [],
+              "sub_steps": []
+            },
+            {
+              "name": "Click Register button",
+              "status": "passed",
+              "description": "",
+              "timestamp": "2026-02-27T21:52:57.863374",
+              "duration_ms": 300,
+              "error_message": "",
+              "attachments": [],
+              "sub_steps": []
+            },
+            {
+              "name": "Verify confirmation email sent",
+              "status": "passed",
+              "description": "",
+              "timestamp": "2026-02-27T21:52:57.863376",
+              "duration_ms": 2000,
+              "error_message": "",
+              "attachments": [],
+              "sub_steps": []
+            }
+          ],
+          "error_message": "",
+          "stack_trace": "",
+          "attachments": [],
+          "ai_analysis": null,
+          "retry_info": null,
+          "parameters": {},
+          "metadata": {},
+          "links": {
+            "jira": "AUTH-567"
+          },
+          "screenshot_count": 0
+        },
+        {
+          "name": "Social Login with Google OAuth",
+          "test_id": "a77c963a",
+          "status": "skipped",
+          "suite_name": "Web Application - Chrome",
+          "description": "",
+          "category": "Authentication",
+          "tags": [
+            "oauth",
+            "google",
+            "skipped"
+          ],
+          "priority": "Medium",
+          "platform": {
+            "platform_type": "web",
+            "os_name": "macOS",
+            "os_version": "14.2",
+            "browser_name": "Chrome",
+            "browser_version": "121.0",
+            "device_name": "",
+            "device_udid": "",
+            "app_name": "",
+            "app_version": "",
+            "automation_name": "",
+            "screen_resolution": "1920x1080",
+            "extra": {}
+          },
+          "start_time": "2026-02-27T21:38:27.515520",
+          "end_time": "2026-02-27T21:38:27.565520",
+          "duration_ms": 50,
+          "steps": [
+            {
+              "name": "Skip: Google OAuth not configured in staging",
+              "status": "skipped",
+              "description": "",
+              "timestamp": "2026-02-27T21:52:57.863395",
+              "duration_ms": 0,
+              "error_message": "",
+              "attachments": [],
+              "sub_steps": []
+            }
+          ],
+          "error_message": "",
+          "stack_trace": "",
+          "attachments": [],
+          "ai_analysis": null,
+          "retry_info": null,
+          "parameters": {},
+          "metadata": {},
+          "links": {},
+          "screenshot_count": 0
+        }
+      ],
+      "metadata": {}
+    },
+    {
+      "name": "Android - Core Features",
+      "suite_id": "a490bc12",
+      "description": "Core feature tests on Android Pixel 7",
+      "start_time": "2026-02-27T21:52:57.863418",
+      "end_time": "2026-02-27T21:52:57.869037",
+      "duration_ms": 5.619,
+      "total": 3,
+      "passed": 2,
+      "failed": 0,
+      "skipped": 0,
+      "broken": 1,
+      "blocked": 0,
+      "warning": 0,
+      "pass_rate": 66.67,
+      "platforms": [
+        "Pixel 7 Android 14"
+      ],
+      "categories": [
+        "Profile",
+        "Performance",
+        "Notifications"
+      ],
+      "tags": [
+        "android",
+        "launch",
+        "notification",
+        "p0",
+        "performance",
+        "profile",
+        "push",
+        "upload"
+      ],
+      "environment": {
+        "name": "QA",
+        "url": "http://appium-hub:4723",
+        "build_number": "app-v3.1.0-beta",
+        "branch": "develop",
+        "ci_tool": "Jenkins",
+        "appium_version": "2.4.1",
+        "java_version": "17"
+      },
+      "tests": [
+        {
+          "name": "Application Cold Start",
+          "test_id": "2ff1c860",
+          "status": "passed",
+          "suite_name": "Android - Core Features",
+          "description": "",
+          "category": "Performance",
+          "tags": [
+            "android",
+            "launch",
+            "performance",
+            "p0"
+          ],
+          "priority": "Critical",
+          "platform": {
+            "platform_type": "android",
+            "os_name": "Android",
+            "os_version": "14",
+            "browser_name": "",
+            "browser_version": "",
+            "device_name": "Pixel 7",
+            "device_udid": "emulator-5554",
+            "app_name": "com.myapp.staging",
+            "app_version": "3.1.0-beta",
+            "automation_name": "UiAutomator2",
+            "screen_resolution": "1080x2400",
+            "extra": {}
+          },
+          "start_time": "2026-02-27T21:38:30.515520",
+          "end_time": "2026-02-27T21:38:39.515520",
+          "duration_ms": 9200,
+          "steps": [
+            {
+              "name": "Install APK on device",
+              "status": "passed",
+              "description": "",
+              "timestamp": "2026-02-27T21:52:57.863435",
+              "duration_ms": 4500,
+              "error_message": "",
+              "attachments": [],
+              "sub_steps": []
+            },
+            {
+              "name": "Launch application",
+              "status": "passed",
+              "description": "Cold start time measured",
+              "timestamp": "2026-02-27T21:52:57.863438",
+              "duration_ms": 2800,
+              "error_message": "",
+              "attachments": [],
+              "sub_steps": []
+            },
+            {
+              "name": "Verify splash screen displayed",
+              "status": "passed",
+              "description": "",
+              "timestamp": "2026-02-27T21:52:57.863440",
+              "duration_ms": 500,
+              "error_message": "",
+              "attachments": [],
+              "sub_steps": []
+            },
+            {
+              "name": "Wait for home screen",
+              "status": "passed",
+              "description": "",
+              "timestamp": "2026-02-27T21:52:57.863441",
+              "duration_ms": 1200,
+              "error_message": "",
+              "attachments": [],
+              "sub_steps": []
+            },
+            {
+              "name": "Verify bottom navigation visible",
+              "status": "passed",
+              "description": "",
+              "timestamp": "2026-02-27T21:52:57.863443",
+              "duration_ms": 200,
+              "error_message": "",
+              "attachments": [],
+              "sub_steps": []
+            }
+          ],
+          "error_message": "",
+          "stack_trace": "",
+          "attachments": [
+            {
+              "name": "android_home_screen",
+              "type": "screenshot",
+              "data": "iVBORw0KGgoAAAANSUhEUgAAARgAAAH0CAIAAABpaqUiAAAReUlEQVR4nO3Ze1BUh92H8bNyv0hRwCsVgxEjvqiAAoICxgATo0ltmBaDNd5em74Tmoya+tomwUts+9akGt/WmEknaBxr0rwxJlFjNFHrLUgsKl5I6iXeiAFvCLLc3XfkvNnZrogrft+Bic9n/IM9e/acn8t59pw9WIL7xBsA7k6Hu3w9AEICNDgjAQKEBAgQEiBASIAAIQEChAQIEBIg4N7y0zFRIxV7Ab4PCg9tu9VTnJGA//8z0m1DBO4Ft70044wECBASIEBIgAAhAQKEBAgQEiBASIAAIQEChAQIEBIgQEiAACEBAoQECBASIEBIgAAhAQKEBAgQEiBASIAAIQEChAQIEBIgQEiAACEBAoQECBASIEBIgAAhAQKEBAgQEiBASIAAIQEChAQIEBIgQEiAACEBAoQECBASIEBIgAAhAQKEBAgQEiBASIAAIQEChAQIEBIgQEiAACEBAoQECBASIEBIgAAhAQKEBAgQEiBASIAAIQEChAQIEBIgQEiAACEBAoQECBASIEBIgAAhAQKEBBAS0D5wRgIECAkQICRAgJAAAUICBAgJECAkQICQAAFCAgQICRAgJECAkAABQgIECAkQICRAgJAAAUICBAgJECAkQICQAAFCAgQICRAgJECAkAABQgIECAkQICRAgJAAAUICBAgJECAkQICQAAFCAgQICRAgJECAkAABQgIECAkQICRAgJAAAUICBAgJECAkQICQAAFCAgQICRAgJECAkAABQgIECAkQICRAgJAAAUICBAgJECAkQICQAAFCAgQICRAgJECAkAABQgIECAkQICRAgJAAAUICBAgJECAkQICQAAFCAgQICRAgJECAkAABQgIECAkQICRAgJAAAUICBAgJECAkQICQAAFCAgQICRAgJECAkAABQgIECAkQICRAgJAAAUICBAgJECAkQICQAAFCAgQICRAgJECAkAABQgIECAkQICRAgJAAAUICBAgJECAkQICQAAFCAgQICRAgJECAkAABQgIECAkQICRAgJAAAUICBAgJECAkQICQAAFCAgQICRAgJECAkAABQgIECAkQICRAgJAAAUICBAgJECAkQICQAAFCAgQICRAgJECAkAABQgIECAkQICRAgJAAAUICBAgJECAkQICQAAFC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",
+              "mime_type": "image/png"
+            }
+          ],
+          "ai_analysis": null,
+          "retry_info": null,
+          "parameters": {},
+          "metadata": {},
+          "links": {},
+          "screenshot_count": 1
+        },
+        {
+          "name": "Push Notification Handling",
+          "test_id": "92838a5c",
+          "status": "broken",
+          "suite_name": "Android - Core Features",
+          "description": "",
+          "category": "Notifications",
+          "tags": [
+            "android",
+            "push",
+            "notification"
+          ],
+          "priority": "High",
+          "platform": {
+            "platform_type": "android",
+            "os_name": "Android",
+            "os_version": "14",
+            "browser_name": "",
+            "browser_version": "",
+            "device_name": "Pixel 7",
+            "device_udid": "emulator-5554",
+            "app_name": "com.myapp.staging",
+            "app_version": "3.1.0-beta",
+            "automation_name": "UiAutomator2",
+            "screen_resolution": "1080x2400",
+            "extra": {}
+          },
+          "start_time": "2026-02-27T21:38:40.515520",
+          "end_time": "2026-02-27T21:38:51.515520",
+          "duration_ms": 11100,
+          "steps": [
+            {
+              "name": "Grant notification permission",
+              "status": "passed",
+              "description": "",
+              "timestamp": "2026-02-27T21:52:57.866197",
+              "duration_ms": 300,
+              "error_message": "",
+              "attachments": [],
+              "sub_steps": []
+            },
+            {
+              "name": "Trigger test notification via API",
+              "status": "passed",
+              "description": "",
+              "timestamp": "2026-02-27T21:52:57.866199",
+              "duration_ms": 800,
+              "error_message": "",
+              "attachments": [],
+              "sub_steps": []
+            },
+            {
+              "name": "Wait for notification in shade",
+              "status": "failed",
+              "description": "",
+              "timestamp": "2026-02-27T21:52:57.866201",
+              "duration_ms": 10000,
+              "error_message": "NoSuchElementException: Notification element not found in notification shade",
+              "attachments": [],
+              "sub_steps": []
+            }
+          ],
+          "error_message": "NoSuchElementException: Unable to locate notification element in shade. The push notification may not have been delivered to the emulator.",
+          "stack_trace": "Traceback (most recent call last):\n  File \"tests/test_notifications.py\", line 45, in test_push_notification\n    notification = driver.find_element(AppiumBy.XPATH, '//android.widget.TextView[@text=\"Test Notification\"]')\nselenium.common.exceptions.NoSuchElementException: Message: An element could not be located using the given search parameters.",
+          "attachments": [
+            {
+              "name": "notification_shade_empty",
+              "type": "screenshot",
+              "data": "iVBORw0KGgoAAAANSUhEUgAAARgAAAH0CAIAAABpaqUiAAAV8ElEQVR4nO3bd3gUdeLH8dl00gMEQgsEgiShJoHQQhEQhaCIcp78lKMdJyKCHiqg4ME9HggqKgiK7QTlLBxFpSldIAIBpPdiqKGkkLphk917wnrrXghJhE/uh+f79fBHMjP5zsyG9853Zzem+Bo1DAC3xuUWfx4AIQEaXJEAAUICBAgJECAkQICQAAFCAgQICRBwK321d+sBir0A/wtyt8690SquSEDFX5HKDBH4LShzasYVCRAgJECAkAABQgIECAkQICRAgJAAAUICBAgJECAkQICQAAFCAgQICRAgJECAkAABQgIECAkQICRAgJAAAUICBAgJECAkQICQAAFCAgQICRAgJECAkAABQgIECAkQICRAgJAAAUICBAgJECAkQICQAAFCAgQICRAgJECAkAABQgIECAkQICRAgJAAAUICBAgJECAkQICQAAFCAgQICRAgJECAkAABQgIECAkQICRAgJAAAUICBAgJECAkQICQAAFCAgQICRAgJECAkAABQgIECAkgJOD2wBUJECAkQICQAAFCAgQICRAgJECAkAABQgIECAkQICRAgJAAAUICBAgJECAkQICQAAFCAgQICRAgJECAkAABQgIECAkQICRAgJAAAUICBAgJECAkQICQAAFCAgQICRAgJECAkAABQgIECAkQICRAgJAAAUICBAgJECAkQICQAAFCAgQICRAgJECAkAABQgIECAkQICRAgJAAAUICBAgJECAkQICQAAFCAgQICRAgJECAkAABQgIECAkQICRAgJAAAUICBAgJECAkQICQAAFCAgQICRAgJECAkAABQgIECAkQICRAgJAAAUICBAgJECAkQICQAAFCAgQICRAgJECAkAABQgIECAkQICRAgJAAAUICBAgJECAkQICQAAFCAgQICRAgJECAkAABQgIECAkQICRAgJAAAUICBAgJECAkQICQAAFCAgQICRAgJECAkAABQgIECAkQICRAgJAAAUICBAgJECAkQICQAAFCAgQICRAgJECAkAABQgIECAkQICRAgJAAAUICBAgJECAkQICQAAFCAgQICRAgJECAkAABQgIECAkQICRAgJAAAUICBAgJECAkQICQAAFCAgQICRAgJECAkAABQgIECAkQICRAgJAAAUICBAgJ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u3bhx+9MGOl4dZh8ZH/S2hVXzWV/1OB6l8+fmTn28X1bN5pzc8y5OclH9s+fPmnZvLfta5d9/M6mZQvzsrPMuTmHdm6Z9fzwPYnrVy+YZ8k32x/i0ndd5pHfBJvN+umbL82dOv7gju+zMzOshYX5eblnjh9evWDu1OH9Du74vpzjlHlqqSlnZ44ddiBp81WzOTszI3HF4rnTJjiPkJ+XO/uFERu++vxK6qUCS9HZbfjys5ljhznfdL0N2azWudPGb1+3Mi8nOysjbfu6lW88O9Rx6+9Gv9AD24s+WmUtLNy2drnqSEzxNWqUstq79YCimfrWn290AreJMW/N9/LxvYk/z/EPqjLhg8V7t3w3b1p5b66UGQJ/2IffEG+/AFc392ufzbNt/Fr5yXr+4gW/IU9OmR187RNbx/f9UOb7Cr8IIeE3JC83J9+cl3x4n/yTuISEX6upI376c5Xym/HcnyrmWHiNBChwswEQICRAgJAAAUICBAgJECAkQICQAAFCAgQICRAgJECAkAABQgIECAkQICRAgJAAAUICBAgJECAkQICQAAFCAgQICRAgJECAkAABQgIECAkQICRAgJAAAUICBAgJECAkQICQAAFCAgQICRAgJECAkAABQgIECAkQICRAgJAAAUICBAgJECAkQICQAAFCAgQICRAgJECAkAABQgIECAkQICRAgJAAAUICBAgJECAkQICQAAFCAgQICRAgJECAkAABQgIECAkQICRAgJAAAUICBAgJECAkQICQAAFCAgQICRAgJECAkAABQgIECAkQICRAgJAAAUICBAgJECAkQICQAAFCAgQICRAgJECAkAABQgIECAkQICRAgJAAAUICBAgJECAkQICQAAFCAgQICRAgJECAkAABQgIECAkQICRAgJAAAUICBAgJECAkQICQAAFCAgQICRAgJECAkAABQgIECAkQICRAgJAAAUICBAgJECAkQICQAAFCAgQICRAgJECAkAABQgIECAkQICRAgJAAAUICBAgJECAkQICQAAFCAgQICRAgJECAkAABQgIECAkQICRAgJAAAUICBAgJECAkQICQAAFCAgQICRAgJECAkAABQgIECAkQICRAgJAAAUICBAgJECAkQICQAAFCAgQICRAgJECAkAABQgIECAkQICRAgJAAAUICBAgJECAkQICQAAFCAgQICRAgJECAkAABQgIECAkQICRAgJAAAUICBAgJECAkQICQAAFCAgQICRAgJECAkAABQgIECAkQICRAgJAAAUICBAgJECAkQICQAAFCAgQICRAgJECAkAABQgIECAkQICRAgJAAAUICBAgJECAkQICQAAFCAgQICRAgJECAkAABQgIECAkQICRAgJAAAUICBAgJECAkQICQAAFCAgQICRAgJECAkAABQgIECAkQICRAgJAAAUICBAgJECAkQICQAAFCAgQICRAgJECAkAABt/Js5N16gGJfwP8srkiAgCm+Rg3FOMBvGlckQICQAAFCAgQICRAgJECAkAABQgIECAkwbt2/AHUEtr6oDIs/AAAAAElFTkSuQmCC",
+              "mime_type": "image/png"
+            }
+          ],
+          "ai_analysis": {
+            "failure_category": "Element Not Found",
+            "root_cause": "Push notification was not delivered to the Android emulator. Emulators often have issues with Google Cloud Messaging/Firebase Cloud Messaging. The notification element could not be found because it never appeared.",
+            "suggestion": "1. Verify Firebase/GCM is properly configured for the emulator. 2. Use a real device for push notification tests. 3. Consider using Android's NotificationListenerService to verify delivery. 4. Add a retry mechanism with longer wait time.",
+            "confidence": 0.82,
+            "similar_failures": [
+              "FCM delivery failure on emulators",
+              "Notification permission not granted",
+              "Test notification service timeout"
+            ]
+          },
+          "retry_info": null,
+          "parameters": {},
+          "metadata": {},
+          "links": {},
+          "screenshot_count": 1
+        },
+        {
+          "name": "Update User Profile Photo",
+          "test_id": "d671fe24",
+          "status": "passed",
+          "suite_name": "Android - Core Features",
+          "description": "",
+          "category": "Profile",
+          "tags": [
+            "android",
+            "profile",
+            "upload"
+          ],
+          "priority": "Medium",
+          "platform": {
+            "platform_type": "android",
+            "os_name": "Android",
+            "os_version": "14",
+            "browser_name": "",
+            "browser_version": "",
+            "device_name": "Pixel 7",
+            "device_udid": "emulator-5554",
+            "app_name": "com.myapp.staging",
+            "app_version": "3.1.0-beta",
+            "automation_name": "UiAutomator2",
+            "screen_resolution": "1080x2400",
+            "extra": {}
+          },
+          "start_time": "2026-02-27T21:38:52.515520",
+          "end_time": "2026-02-27T21:38:57.515520",
+          "duration_ms": 4950,
+          "steps": [
+            {
+              "name": "Navigate to profile screen",
+              "status": "passed",
+              "description": "",
+              "timestamp": "2026-02-27T21:52:57.869025",
+              "duration_ms": 600,
+              "error_message": "",
+              "attachments": [],
+              "sub_steps": []
+            },
+            {
+              "name": "Tap edit profile button",
+              "status": "passed",
+              "description": "",
+              "timestamp": "2026-02-27T21:52:57.869027",
+              "duration_ms": 200,
+              "error_message": "",
+              "attachments": [],
+              "sub_steps": []
+            },
+            {
+              "name": "Tap change photo",
+              "status": "passed",
+              "description": "",
+              "timestamp": "2026-02-27T21:52:57.869029",
+              "duration_ms": 150,
+              "error_message": "",
+              "attachments": [],
+              "sub_steps": []
+            },
+            {
+              "name": "Select photo from gallery",
+              "status": "passed",
+              "description": "",
+              "timestamp": "2026-02-27T21:52:57.869030",
+              "duration_ms": 1200,
+              "error_message": "",
+              "attachments": [],
+              "sub_steps": []
+            },
+            {
+              "name": "Crop and confirm",
+              "status": "passed",
+              "description": "",
+              "timestamp": "2026-02-27T21:52:57.869032",
+              "duration_ms": 800,
+              "error_message": "",
+              "attachments": [],
+              "sub_steps": []
+            },
+            {
+              "name": "Verify photo updated",
+              "status": "passed",
+              "description": "",
+              "timestamp": "2026-02-27T21:52:57.869033",
+              "duration_ms": 2000,
+              "error_message": "",
+              "attachments": [],
+              "sub_steps": []
+            }
+          ],
+          "error_message": "",
+          "stack_trace": "",
+          "attachments": [],
+          "ai_analysis": null,
+          "retry_info": null,
+          "parameters": {},
+          "metadata": {},
+          "links": {},
+          "screenshot_count": 0
+        }
+      ],
+      "metadata": {}
+    },
+    {
+      "name": "iOS - Core Features",
+      "suite_id": "969230e8",
+      "description": "Core feature tests on iPhone 15 Pro",
+      "start_time": "2026-02-27T21:52:57.869046",
+      "end_time": "2026-02-27T21:52:57.873261",
+      "duration_ms": 4.215,
+      "total": 4,
+      "passed": 2,
+      "failed": 1,
+      "skipped": 0,
+      "broken": 0,
+      "blocked": 1,
+      "warning": 0,
+      "pass_rate": 50.0,
+      "platforms": [
+        "iPhone 15 Pro iOS 17.2"
+      ],
+      "categories": [
+        "Navigation",
+        "Checkout",
+        "Performance",
+        "Authentication"
+      ],
+      "tags": [
+        "applepay",
+        "biometric",
+        "blocked",
+        "deeplink",
+        "faceid",
+        "ios",
+        "launch",
+        "navigation",
+        "performance"
+      ],
+      "environment": {
+        "name": "QA",
+        "url": "http://appium-hub:4723",
+        "build_number": "app-v3.1.0-beta",
+        "branch": "develop",
+        "xcode_version": "15.2",
+        "appium_version": "2.4.1"
+      },
+      "tests": [
+        {
+          "name": "Application Cold Start",
+          "test_id": "d63981e6",
+          "status": "passed",
+          "suite_name": "iOS - Core Features",
+          "description": "",
+          "category": "Performance",
+          "tags": [
+            "ios",
+            "launch",
+            "performance"
+          ],
+          "priority": "Critical",
+          "platform": {
+            "platform_type": "ios",
+            "os_name": "iOS",
+            "os_version": "17.2",
+            "browser_name": "",
+            "browser_version": "",
+            "device_name": "iPhone 15 Pro",
+            "device_udid": "00008110-XXXX",
+            "app_name": "com.myapp.staging",
+            "app_version": "3.1.0-beta",
+            "automation_name": "XCUITest",
+            "screen_resolution": "",
+            "extra": {}
+          },
+          "start_time": "2026-02-27T21:39:00.515520",
+          "end_time": "2026-02-27T21:39:10.515520",
+          "duration_ms": 9400,
+          "steps": [
+            {
+              "name": "Install IPA on simulator",
+              "status": "passed",
+              "description": "",
+              "timestamp": "2026-02-27T21:52:57.869062",
+              "duration_ms": 6000,
+              "error_message": "",
+              "attachments": [],
+              "sub_steps": []
+            },
+            {
+              "name": "Launch application",
+              "status": "passed",
+              "description": "",
+              "timestamp": "2026-02-27T21:52:57.869064",
+              "duration_ms": 2200,
+              "error_message": "",
+              "attachments": [],
+              "sub_steps": []
+            },
+            {
+              "name": "Verify onboarding screen",
+              "status": "passed",
+              "description": "",
+              "timestamp": "2026-02-27T21:52:57.869065",
+              "duration_ms": 400,
+              "error_message": "",
+              "attachments": [],
+              "sub_steps": []
+            },
+            {
+              "name": "Skip onboarding",
+              "status": "passed",
+              "description": "",
+              "timestamp": "2026-02-27T21:52:57.869067",
+              "duration_ms": 300,
+              "error_message": "",
+              "attachments": [],
+              "sub_steps": []
+            },
+            {
+              "name": "Verify home screen loaded",
+              "status": "passed",
+              "description": "",
+              "timestamp": "2026-02-27T21:52:57.869068",
+              "duration_ms": 500,
+              "error_message": "",
+              "attachments": [],
+              "sub_steps": []
+            }
+          ],
+          "error_message": "",
+          "stack_trace": "",
+          "attachments": [
+            {
+              "name": "ios_home_screen",
+              "type": "screenshot",
+              "data": "iVBORw0KGgoAAAANSUhEUgAAARgAAAH0CAIAAABpaqUiAAAQp0lEQVR4nO3ae1SU54HH8RcZ7goqIqh4gQaEooLEgBLURkHJSSNeisFDknqi0SUarW43u1ETa7WN3XajjdqTY121GpM0tw0mKWqMt3gJQVJvWdR4iVRR1KB4YYbr7FneZs4cVJjgr02GfD/HP2ZennnneY/zned9X/AIikk1ANydNnf5egCEBGiwIgEChAQIEBIgQEiAACEBAoQECBASIGBp+sfJ/N0D8LWCo7uNO2BFAv7xK1KzIQLfB82emrEiAQKEBAgQEiBASIAAIQEChAQIEBIgQEiAACEBAoQECBASIEBIgAAhAQKEBAgQEiBASIAAIQEChAQIEBIgQEiAACEBAoQECBASIEBIgAAhAQKEBAgQEiBASIAAIQEChAQIEBIgQEiAACEBAoQECBASIEBIgAAhAQKEBAgQEiBASIAAIQEChAQIEBIgQEiAACEBAoQECBASIEBIgAAhAQKEBAgQEiBASIAAIQEChAQIEBIgQEiAACEBAoQECBASIEBIgAAhAQKEBAgQEiBASIAAIQGEBHw3sCIBAoQECBASIEBIgAAhAQKEBAgQEiBASIAAIQEChAQIEBIgQEiAACEBAoQECBASIEBIgAAhAQKEBAgQEiBASIAAIQEChAQIEBIgQEiAACEBAoQECBASIEBIgAAhAQKEBAgQEiBASIAAIQEChAQIEBIgQEiAACEBAoQECBASIEBIgAAhAQKEBAgQEiBASIAAIQEChAQIEBIgQEiAACEBAoQECBASIEBIgAAhAQKEBAgQEiBASIAAIQEChAQIEBIgQEiAACEBAoQECBASIEBIgAAhAQKEBAgQEiBASIAAIQEChAQIEBIgQEiAACEBAoQECBASIEBIgAAhAQKEBAgQEiBASIAAIQEChAQIEBIgQEiAACEBAoQECBASIEBIgAAhAQKEBAgQEiBASIAAIQEChAQIEBIgQEiAACEBAoQECBASIEBIgAAhAQKEBAgQEiBASIAAIQEChAQIEBIgQEiAACEBAoQECBASIEBIgAAhAQKEBAgQEiBASIAAIQEChAQIEBIgQEiAACEBAoQECBASIEBIgAAhAQKEBAgQEiBASIAAIQEChAQIEBIgQEiAACEBAoQECBASIEBIgAAhAQKEBAgQEiBASIAAIQEC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4+nybM2vj1bA7UOqqq4uPnmyT3R02v33m7dlG/H18Xlg4EDDMAoPHzY/Q/mrV1++cuXR2bMbjbTb7Z9/8UWf6OiuoaF3E5J5ktblltOtnt263fYemivMb+49RUW/XLbMxZe4eKTmbEM7dRJO5gcNp6/faLbuzi2X0UY+2L7dMIzHx4y57Z3rJx95pH1gYPGJE0dPnjQ/Q387fz6kY0fzXl8jMZGRjouTFjt2+rTdbh+alOTd8GVv6hwcHBcVVX716rmyshbs88y5c1abrU90tLmsmSyenqteeGHjypW3XZFcPNJjp07Z7fZB/fs77yRjyJDNa9eOSktr2WTOfPPZurvWENL2Tz45UFzcLiBgybx54zIyuoWGelksfr6+cVFRz02f/uNhw6w221Knk3UzvOdnzBidnh7aqZPF09Pfz69fTMwvZsyIj429abUecLrib4HLDX/j1z4wcE5ubtfQUIunZ0T37nOfesrDw+P97dubuPpqQm1d3aZdu4LatZs3bVqv8HAfb+/I7t0X/Oxn3bt0+XD37lqn00VnrhzppfLyoiNH2gcG/nzy5E4dOvj6+Azq3//J7Gy73V548GDLJlPbotm6tdbw3WC32xe89NLz06f3j4ubkp09JTvb+adXKioWLl/ufIGUt3VrdETE8JSU3Jyc3Jwc58FWm23xyy9bbba7nNLy9euXzps3KDFx0Ne/XTUM4/jp02/l57d4n39655342NgBffsO6NvXsbGktHTN22/f6SUuHumKV175/XPPPTBwoHkObHorP//8nc9Cm53Mn775bN1aawjJvLn8H7/97eD77huektI7IiKwXTurzVZaVrbvr3/duHVro1thdrv9P1eu3FNUlDF0aO+IiLb+/tU1NWcvXCg8dOi9bduc76S1WGlZ2dMLFkwcN+7ePn0C/PwulZfv/PTT199/v6q6usX7tNps//rrXz+amTk0OTmoXbvL5eV7P/vslby8O91icf1IS8vKZi1aNGn8+ITYWHvDxz3vww93NPnn4c1OxvrNZ+vWPIJiUpv4cXLDTwuO7v4nTgn4zmk2hNZwjQR86wgJECAkQICQAAFCAgQICRAgJECAkAABQgIECAkQICRAgJAAAUICBAgJECAkQICQAAFCAgQICRAgJECAkAABQgIECAkQICRAgJAAAUICBAgJECAkQICQAAFCAgQICRAgJECAkAABQgIECAkQICRAgJAAAUICBAgJECAkQICQAAFCAgQICRAgJECAkAABQgIECAkQICRAgJAAAUICBAgJECAkQICQAAFCAgQICRAgJECAkAABQgIECAkQICRAgJAAAUICBAgJECAkQICQAAFCAgQICRAgJECAkAABQgIECAkQICRAgJAAAUICBAgJECAkQICQAAFCAgQICRAgJECAkAABQgIECAkQICRAgJAAAUICBAgJECAkQICQAAFCAgQICRAgJECAkAABQgIECAkQICRAgJAAAUICBAgJECAkQICQAAFCAgQICRAgJECAkAABQgIECAkQICRAgJAAAUICBAgJECAkQICQAAFCAgQICRAgJECAkAABQgIECAkQICRAgJAAAUICBAgJECAkQICQAAFCAgQICRAgJECAkAABQgIECAkQICRAgJAAAUICBAgJECAkQICQAAFCAgQICRAgJECAkAABQgIECAkQICRAgJAAAUICBAgJECAkQICQAAFCAgQICRAgJECAkAABQgIECAkQICRAgJAAAUICBAgJECAkQICQAAFCAgQICRAgJECAkAABQgIECAkQICRAgJAAAUICBAgJECAkQICQAAFCAgQICRAgJECAkAABQgIECAkQICRAgJAAAUICBAgJECAkQICQAAFCAgQICRAgJECAkAABQgIECAkQICRAgJAAAUICBAgJECAkQICQAAFCAgQICRAgJECAkAABQgIECAkQICRAgJAAAUICBAgJECAkQICQAAFCAgQICRAgJECAkAABQgIECAkQICRAgJAAAUICBAgJECAkQICQAAFCAgQICRAgJECAkAABQgIECAkQICRAgJAAAUICBAgJELC4Mig5JlXxXkCrxYoECHgEsdoAd40VCRAgJECAkAABQgIECAkQICRAgJAAAUICjLv3f9Afqv1/ZAxOAAAAAElFTkSuQmCC",
+              "mime_type": "image/png"
+            }
+          ],
+          "ai_analysis": null,
+          "retry_info": null,
+          "parameters": {},
+          "metadata": {},
+          "links": {},
+          "screenshot_count": 1
+        },
+        {
+          "name": "Login with Face ID",
+          "test_id": "c7fa2d68",
+          "status": "failed",
+          "suite_name": "iOS - Core Features",
+          "description": "",
+          "category": "Authentication",
+          "tags": [
+            "ios",
+            "biometric",
+            "faceid"
+          ],
+          "priority": "High",
+          "platform": {
+            "platform_type": "ios",
+            "os_name": "iOS",
+            "os_version": "17.2",
+            "browser_name": "",
+            "browser_version": "",
+            "device_name": "iPhone 15 Pro",
+            "device_udid": "00008110-XXXX",
+            "app_name": "com.myapp.staging",
+            "app_version": "3.1.0-beta",
+            "automation_name": "XCUITest",
+            "screen_resolution": "",
+            "extra": {}
+          },
+          "start_time": "2026-02-27T21:39:11.515520",
+          "end_time": "2026-02-27T21:39:17.515520",
+          "duration_ms": 5600,
+          "steps": [
+            {
+              "name": "Navigate to login screen",
+              "status": "passed",
+              "description": "",
+              "timestamp": "2026-02-27T21:52:57.871434",
+              "duration_ms": 400,
+              "error_message": "",
+              "attachments": [],
+              "sub_steps": []
+            },
+            {
+              "name": "Tap 'Login with Face ID'",
+              "status": "passed",
+              "description": "",
+              "timestamp": "2026-02-27T21:52:57.871437",
+              "duration_ms": 200,
+              "error_message": "",
+              "attachments": [],
+              "sub_steps": []
+            },
+            {
+              "name": "Authenticate with Face ID",
+              "status": "failed",
+              "description": "",
+              "timestamp": "2026-02-27T21:52:57.871439",
+              "duration_ms": 5000,
+              "error_message": "Face ID enrollment not found on simulator",
+              "attachments": [],
+              "sub_steps": []
+            }
+          ],
+          "error_message": "Face ID authentication failed: No enrolled biometrics found on simulator. LAError.biometryNotEnrolled",
+          "stack_trace": "Error Domain=com.apple.LocalAuthentication Code=-7\n  \"Biometry is not enrolled.\" UserInfo={NSLocalizedDescription=Biometry is not enrolled.}\n  at BiometricManager.authenticate() (BiometricManager.swift:45)\n  at LoginViewController.handleBiometricLogin() (LoginViewController.swift:102)",
+          "attachments": [
+            {
+              "name": "faceid_error",
+              "type": "screenshot",
+              "data": "iVBORw0KGgoAAAANSUhEUgAAARgAAAH0CAIAAABpaqUiAAANtElEQVR4nO3aeZDX5WHH8e8ecsqlC4IgyKqAIGBWKojgQWDVRCEmVTHaFCs6TqxWjVHHGsYajVaY2Ol4xaumhhiPUkfX2IjiiWLqfUDiDUJQ7vs+OstmGKK4RPnIUPf1+oPh93yPfX78ePN892FLqisqCmD7lG7n9YCQIMOKBAFCggAhQYCQIEBIECAkCBASBJRv4/ig0YmvAl8Lz972eUesSLADVqRthQgNwrYezaxIECAkCBASBAgJAoQEAUKCACFBgJAgQEgQICQIEBIECAkChAQBQoIAIUGAkCBASBAgJAgQEgQICQKEBAFCggAhQYCQIEBIECAkCBASBAgJAoQEAUKCACFBgJAgQEgQICQIEBIECAkChAQBQoIAIUGAkCBASBAgJAgQEgQICQKEBAFCggAhQYCQIEBIECAkCBASBAgJAoQEAUKCACFBgJAgQEgQICQIEBIECAkChAQBQoIAIUGAkCBASCAk2DlYkSBASBAgJAgQEgQICQKEBAFCggAhQYCQIEBIECAkCBASBAgJAoQEAUKCACFBgJAgQEgQICQIEBIECAkChAQBQoIAIUGAkCBASBAgJAgQEgQICQKEBAFCggAhQYCQIEBIECAkCBASBAgJAoQEAUKCACFBgJAgQEgQICQIEBIECAkChAQBQoIAIUGAkCBASBAgJAgQEgQICQKEBAFCggAhQYCQIEBIECAkCBASBAgJAoQEAUKCACFBgJAgQEgQICQIEBIECAkChAQBQoIAIUGAkCBASBAgJAgQEgQICQKEBAFCggAhQYCQIEBIECAkCBASBAgJAoQEAUKCACFBgJAgQEgQICQIEBIECAkChAQBQoIAIUGAkCBASBAgJAgQEgQICQKEBAFCggAhQYCQIEBIECAkCBASBAgJAoQEAUKCACFBgJAgQEgQICQIEBIECAkChAQBQoIAIUGAkCBASBAgJAgQEgQICQKEBAFCggAhQYCQIEBIECAkCBASBAgJAoQEAUKCACFBgJAgQEgQICQIEBIECAkChAQBQoIAIUGAkCBASBAgJAgQEgQICQKEBAFCggAhQYCQIEBIECAkCBASBAgJAoQEAUKCACFBgJAgQEgQICQIEBIElBcNT/eDB50yZtznHX3zmcfu/dfLip3AQUcNH3HOpVuObFi/ftnC+e+//uLkCeM/+fC9L/0ei6K4/uxT5kyv7w58IVaknUV5o0ZX1Ey55O7f1XNOaVlZy4p2Bw751ln/9ss+Rxy1A2fHNjTEFWlnW3nq9/yD9zxyy3V1v9+lcZM9ulQeMmJk78Orv3v+mHkzp//p3T/Uc+3Ljz74wL//bEfNtEFruCFtU9feVQNGnNSpW68mu7ZYPOfjqc8/+ez9d61avmzzCU13bTHk1DN7Djyyya4tFn4867VJjzz/4D3r1qypO1pWXn7IiJOrhh3beo89ly+a/+azk576zR1bXv4lrF29aubbU+8bO2bNqpUHHTVi2Kizf3nZOdtzwxMvvvKAwUOvOH7wkFPPrKoe/sT4216ouW+rg0VRNGm+6+Ej/6HXoUNa7Lb70gXz35r8F+/oxM+5qoEQ0tZ16XXgqJ/dUFJSUveyolOXw074+/37H3bz+aetXb2qrqLRY29tu9fedSe061w5bNTZnXv2HX/FhbXPYKWlJ192bbd+A+uOtmrb/tDjv7//gMNv+dHpK5Ys2v6P7dE7bzjwm9+q7NuvxW4VSxfM2867HT36vIO//b36B5s0bzH62pvbddmn7mXrdrXvqPvfHHrrj89YuXRJ/bdqCIS0db0Pry4pKXnklutee+J/Vq1Y1rxVm4HfOfnQ757S54jql373YFEUw0ad3XavvT94/aWam8YumvNxx/32/96Fl3c/eFDH/XrOemdq/+NO7NZv4JwZ79fcOHbWO9NaVrQ7+vRzux88qHrUDyPPWiuXLpn+1muVfft16tZr2pSntvNuVcOOq7nx2jeeeWzLJD41OGzUD9t12af2/d48buHsmbt37HzMGedX9u13zOh/mnDdT+u/VUPQcEM6YPDQAwYP/dTgH6Y8/esrLyqKoubGa2tuvHbz+NIF8+Z+9GFRFG3adyyKonHTZn2HHLN65Yp7rr50xdLFRVF8+OYrj95x/QkX/bRLr76z3pk68Dsj165Z/avLL1g05+OiKObPmnHvNf98wR0P9Bo89MHrr9mwYcP2z3/ezOmVffu1rGhbzzlV1cOrqod/dvyZ+++aeOcNm19OnjD+97+d8Klzthxs3LTZN7757TWrVt591SWrli8tiuKTD9+7+6qLf/QfD/Q+/Kiam8atWbWynls1BA03pG0qKSndq0evrn0O6lDZvX1lt9061CZUUlK7z9mxW89dGjV+a/KkuorqvPH0xDeenlgUxW4dOrZq2/79116sq6jO2jWr333lhb5HHt2mQ6f5s2Zs//RWr1yxaR8v8Am+9dwT9Q927NarvFGjVx9/uK6iP09gxfJ3X37hgMFD21fuN2Pq6/XcqiFouCHVv2vXul37kZdes+e+Peperl6x/OWJD1UNO67uZau2e9SuCR9N/5xrOxRFUdm33xU1Uz57tFmLlvMT82/WomVRFMsXL9z+XbtlC+fXP1j3fuvW5C0tnvvJppm0qv9WDUHDDal+x58/Zs99eyyYPfPVx387feprH017vcM+3TeHVL5Lo6Io1q1dvdVrS0vL6rlzWfkukRm23atr7V/lLRa9r05Zee3fk80bkps1atps05/D2h0wh52ckLaiaYuWXXtXLfpk9k3n/qDuCar2392WrTefsHzTzlvdyvNZyzatElOfe/I3P7vkK/rYWla069S918plSz/645vFV69up7FNh06fGm/XuTbmRXNm74A57OT8ZMNW7Np6t9rvp6e/t7mioii2/EmCWX+cunHjxh79D9tyeamqHn5FzZT+x54wd8b7q1eu6NLrwEZNmm4+WlZefu7N9/xkwlPbvyKVlJQcc8Z5pWVl055/csP69cVXb+bbte+39+Ch5Y1ql+I6rdu179yzz9IF8+bP+mgHzGEnJ6StWPjJnzasX1/Zt1+3fgPLGzVq27nr8edd1nPgkZsaa1NaVrZ43ifvvvxC89Ztjj/vspa7t23UpGmP/oOPPv2cjRs3vP3ic+vXrXt54kPNW7UeeenV7brss0vjJu277nfKmHEVnbq88tjD69d9+QehsvJd2ld2G3np1b0OHbJm1cpJ428tdogl8+a89+rvm7duc+JFV+7WoVNZefkee+974sVXlZSU/u8j/71xY2AT8v87j3ZbsW7Nmhdq7jtkxMhTL//5n0fWrr1/7Ji//fG/fGPosU13bfnrKy96+OZxZ/789j5HHLXlSjV5wviFH88qimLSXb/o2rtq36oB/1g1YPPRuTM+ePw/b/qin9Ahw086ZPhJnxpcu2b1fdf+ZMm8OfVf+3nb30VR3H3lxV/oP6Bqbhx7xrjbegw4rMeAwzYPznpn2uT/+tVff5OvMSFt3cQ7bygpLet75NGlpaUzpr4+afwts96Z1navvQef8INlixYURbFg9sxbLzyj+rSzK/v027hx49yPPpzy0L1vbtr+rtubvv3is478/ugDBg9t1rL1knlzpk156sm7b1+9Yvn2fFrr161bMn/OB6+/NHnC+M/uoX2lFsye+YsLThv6d2ftW9W/cbPmi+fOefPZx56+5861a7a+49LQlFRXVNR3fNDo2l+fvW2HTQh2RtsKwfdIECAkCBASBAgJAoQEAUKCACFBgJAgQEgQICQIEBIECAkChAQBQoIAIUGAkCBASBAgJAgQEgQICQKEBAFCggAhQYCQIEBIECAkCBASBAgJAoQEAUKCACFBgJAgQEgQICQIEBIECAkChAQBQoIAIUGAkCBASBAgJAgQEgQICQKEBAFCggAhQYCQIEBIECAkCBASBAgJAoQEAUKCACFBgJAgQEgQICQIEBIECAkChAQBQoIAIUGAkCBASBAgJAgQEgQICQKEBAFCggAhQYCQIEBIECAkCBASBAgJAoQEAUKCACFBgJAgQEgQICQIEBIECAkChAQBQoIAIUGAkCBASBAgJAgQEgQICQKEBAFCggAhQYCQIEBIECAkCBASBAgJAoQEAUKCACFBgJAgQEgQICQIEBIECAkChAQBQoIAIUGAkCBASBAgJAgQEgQICQKEBAFCggAhQYCQIEBIECAkCBASBAgJAoQEAUKCACFBgJAgQEgQICQIEBIECAkChAQBQoIAIUGAkCBASBAgJAgQEgQICQKEBAFCggAhQYCQIEBIECAkCBASBAgJAoQEAUKCACFBgJAgQEgQICQIEBIECAkChAQBQoIAIUGAkCBASBAgJAgQEgQICQKEBAFCggAhQYCQIEBIECAkCBASBAgJAoQEAUKCACFBgJAgQEgQICQIEBIECAkChAQBQoIAIUGAkCBASBAgJAgQEgQICQKEBAFCggAhQYCQIEBIECAkCBASBAgJAoQEAUKCACFBgJAgQEgQICQIEBIECAkChAQBQoIAIUGAkCBASBAgJAgQEgQICQKEBAFCggAhQYCQIEBIECAkCBASBAgJAoQEAUKCACFBgJAgQEgQICQIEBIECAkChAQBQoKA8r/qrEGjE18LvrasSBBQUl1RkbgPNGhWJAgQEgQICQKEBAFCggAhQYCQIEBIUGy//wPA3Pi9cZ3zlgAAAABJRU5ErkJggg==",
+              "mime_type": "image/png"
+            }
+          ],
+          "ai_analysis": {
+            "failure_category": "Configuration Error",
+            "root_cause": "Face ID is not enrolled on the iOS simulator. Biometric authentication requires explicit enrollment setup on simulators before tests can use it.",
+            "suggestion": "1. Enroll Face ID on simulator: Features > Face ID > Enrolled. 2. Use Appium's mobile:enrollBiometric command before the test. 3. Add a setup step that checks for biometric availability and skips gracefully.",
+            "confidence": 0.92,
+            "similar_failures": [
+              "Biometric not available on simulator",
+              "Touch ID enrollment missing",
+              "LAError.biometryNotEnrolled on test devices"
+            ]
+          },
+          "retry_info": null,
+          "parameters": {
+            "biometric_type": "Face ID"
+          },
+          "metadata": {},
+          "links": {},
+          "screenshot_count": 1
+        },
+        {
+          "name": "Deep Link to Product Page",
+          "test_id": "34adf8fe",
+          "status": "passed",
+          "suite_name": "iOS - Core Features",
+          "description": "",
+          "category": "Navigation",
+          "tags": [
+            "ios",
+            "deeplink",
+            "navigation"
+          ],
+          "priority": "Medium",
+          "platform": {
+            "platform_type": "ios",
+            "os_name": "iOS",
+            "os_version": "17.2",
+            "browser_name": "",
+            "browser_version": "",
+            "device_name": "iPhone 15 Pro",
+            "device_udid": "00008110-XXXX",
+            "app_name": "com.myapp.staging",
+            "app_version": "3.1.0-beta",
+            "automation_name": "XCUITest",
+            "screen_resolution": "",
+            "extra": {}
+          },
+          "start_time": "2026-02-27T21:39:18.515520",
+          "end_time": "2026-02-27T21:39:21.515520",
+          "duration_ms": 2480,
+          "steps": [
+            {
+              "name": "Open deep link: myapp://product/12345",
+              "status": "passed",
+              "description": "",
+              "timestamp": "2026-02-27T21:52:57.873238",
+              "duration_ms": 1500,
+              "error_message": "",
+              "attachments": [],
+              "sub_steps": []
+            },
+            {
+              "name": "Verify product page loaded",
+              "status": "passed",
+              "description": "",
+              "timestamp": "2026-02-27T21:52:57.873240",
+              "duration_ms": 800,
+              "error_message": "",
+              "attachments": [],
+              "sub_steps": []
+            },
+            {
+              "name": "Verify product title matches",
+              "status": "passed",
+              "description": "",
+              "timestamp": "2026-02-27T21:52:57.873241",
+              "duration_ms": 100,
+              "error_message": "",
+              "attachments": [],
+              "sub_steps": []
+            },
+            {
+              "name": "Verify Add to Cart button visible",
+              "status": "passed",
+              "description": "",
+              "timestamp": "2026-02-27T21:52:57.873243",
+              "duration_ms": 80,
+              "error_message": "",
+              "attachments": [],
+              "sub_steps": []
+            }
+          ],
+          "error_message": "",
+          "stack_trace": "",
+          "attachments": [],
+          "ai_analysis": null,
+          "retry_info": null,
+          "parameters": {},
+          "metadata": {},
+          "links": {},
+          "screenshot_count": 0
+        },
+        {
+          "name": "Apple Pay Checkout",
+          "test_id": "57915da1",
+          "status": "blocked",
+          "suite_name": "iOS - Core Features",
+          "description": "",
+          "category": "Checkout",
+          "tags": [
+            "ios",
+            "applepay",
+            "blocked"
+          ],
+          "priority": "High",
+          "platform": {
+            "platform_type": "ios",
+            "os_name": "iOS",
+            "os_version": "17.2",
+            "browser_name": "",
+            "browser_version": "",
+            "device_name": "iPhone 15 Pro",
+            "device_udid": "00008110-XXXX",
+            "app_name": "com.myapp.staging",
+            "app_version": "3.1.0-beta",
+            "automation_name": "XCUITest",
+            "screen_resolution": "",
+            "extra": {}
+          },
+          "start_time": "2026-02-27T21:39:22.515520",
+          "end_time": "2026-02-27T21:39:22.615520",
+          "duration_ms": 100,
+          "steps": [
+            {
+              "name": "Apple Pay not available in test environment",
+              "status": "warning",
+              "description": "",
+              "timestamp": "2026-02-27T21:52:57.873256",
+              "duration_ms": 0,
+              "error_message": "",
+              "attachments": [],
+              "sub_steps": []
+            }
+          ],
+          "error_message": "",
+          "stack_trace": "",
+          "attachments": [],
+          "ai_analysis": null,
+          "retry_info": null,
+          "parameters": {},
+          "metadata": {},
+          "links": {},
+          "screenshot_count": 0
+        }
+      ],
+      "metadata": {}
+    }
+  ]
+}
