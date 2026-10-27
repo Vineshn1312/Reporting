@@ -978,7 +978,7 @@ body {
       <div class="filter-bar">
         <div class="search-wrapper">
           <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
-          <input type="text" class="search-input" placeholder="Search tests by name, error, tag..." id="searchInput" oninput="filterTests()">
+          <input type="text" class="search-input" placeholder="Search tests by name, error, tag..." id="searchInput" oninput="scheduleFilter()">
         </div>
         <select class="filter-select" id="statusFilter" onchange="filterTests()">
           <option value="">All Statuses</option>
@@ -1153,12 +1153,12 @@ function exportJSON() {
 function drawDonut() {
   const s = REPORT_DATA.summary;
   const segments = [
-    {value: s.passed, color: '#22c55e', label: 'Passed'},
-    {value: s.failed, color: '#ef4444', label: 'Failed'},
-    {value: s.broken, color: '#f97316', label: 'Broken'},
-    {value: s.skipped, color: '#6b7280', label: 'Skipped'},
-    {value: s.blocked, color: '#f59e0b', label: 'Blocked'},
-    {value: s.warning, color: '#eab308', label: 'Warning'},
+    {value: num(s.passed), color: '#22c55e', label: 'Passed'},
+    {value: num(s.failed), color: '#ef4444', label: 'Failed'},
+    {value: num(s.broken), color: '#f97316', label: 'Broken'},
+    {value: num(s.skipped), color: '#6b7280', label: 'Skipped'},
+    {value: num(s.blocked), color: '#f59e0b', label: 'Blocked'},
+    {value: num(s.warning), color: '#eab308', label: 'Warning'},
   ].filter(seg => seg.value > 0);
 
   const total = segments.reduce((a, b) => a + b.value, 0);
@@ -1196,7 +1196,7 @@ function drawDonut() {
 
 // ===== PASS RATE RING =====
 function drawPassRateRing() {
-  const rate = REPORT_DATA.summary.pass_rate;
+  const rate = num(REPORT_DATA.summary.pass_rate);
   const svg = document.getElementById('passRateRing');
   const cx = 100, cy = 100, r = 80;
   const circumference = 2 * Math.PI * r;
@@ -1219,23 +1219,25 @@ function drawPlatformBars(containerId, stats) {
   const container = document.getElementById(containerId);
   if (!container || !stats) return;
 
+  let html = '';
   Object.entries(stats).forEach(([name, data]) => {
-    const total = data.total || 1;
-    const passedPct = (data.passed / total * 100).toFixed(1);
-    const failedPct = (data.failed / total * 100).toFixed(1);
+    const total = num(data.total) || 1;
+    const passedPct = (num(data.passed) / total * 100).toFixed(1);
+    const failedPct = (num(data.failed) / total * 100).toFixed(1);
     const otherPct = (100 - parseFloat(passedPct) - parseFloat(failedPct)).toFixed(1);
 
-    container.innerHTML += `
+    html += `
       <div class="bar-item">
-        <div class="bar-label" title="${name}">${name}</div>
+        <div class="bar-label" title="${esc(name)}">${esc(name)}</div>
         <div class="bar-track">
           <div class="bar-segment passed" style="width:${passedPct}%"></div>
           <div class="bar-segment failed" style="width:${failedPct}%"></div>
           <div class="bar-segment other" style="width:${otherPct}%"></div>
         </div>
-        <div class="bar-value">${data.total}</div>
+        <div class="bar-value">${num(data.total)}</div>
       </div>`;
   });
+  container.innerHTML += html;
 }
 
 function drawFailureCategoryBars() {
@@ -1243,33 +1245,39 @@ function drawFailureCategoryBars() {
   const cats = REPORT_DATA.failure_categories;
   if (!container || !cats) return;
 
-  const maxVal = Math.max(...Object.values(cats), 1);
+  const maxVal = Math.max(...Object.values(cats).map(num), 1);
+  let html = '';
   Object.entries(cats).forEach(([name, count]) => {
-    const pct = (count / maxVal * 100).toFixed(1);
-    container.innerHTML += `
+    const pct = (num(count) / maxVal * 100).toFixed(1);
+    html += `
       <div class="bar-item">
-        <div class="bar-label" title="${name}">${name}</div>
+        <div class="bar-label" title="${esc(name)}">${esc(name)}</div>
         <div class="bar-track">
           <div class="bar-segment failed" style="width:${pct}%"></div>
         </div>
-        <div class="bar-value">${count}</div>
+        <div class="bar-value">${num(count)}</div>
       </div>`;
   });
+  container.innerHTML = html;
 }
 
 // ===== TEST RESULTS TABLE =====
+let _allTests = null;
 function getAllTests() {
-  const tests = [];
-  REPORT_DATA.suites.forEach(suite => {
-    suite.tests.forEach(t => {
-      t._suite_name = suite.name;
-      tests.push(t);
+  if (!_allTests) {
+    _allTests = [];
+    (REPORT_DATA.suites || []).forEach(suite => {
+      (suite.tests || []).forEach(t => {
+        t._suite_name = suite.name;
+        _allTests.push(t);
+      });
     });
-  });
-  return tests;
+  }
+  return _allTests.slice();
 }
 
 function formatDuration(ms) {
+  ms = num(ms);
   if (ms < 1000) return ms.toFixed(0) + 'ms';
   const s = ms / 1000;
   if (s < 60) return s.toFixed(1) + 's';
@@ -1277,7 +1285,9 @@ function formatDuration(ms) {
   return m + 'm ' + (s % 60).toFixed(0) + 's';
 }
 
+let _renderedTests = [];
 function renderTests(tests) {
+  _renderedTests = tests;
   const container = document.getElementById('testRows');
   const noResults = document.getElementById('noResults');
 
@@ -1289,15 +1299,15 @@ function renderTests(tests) {
   noResults.style.display = 'none';
 
   container.innerHTML = tests.map((t, idx) => {
-    const platformName = t.platform ? t.platform.platform_type : '';
+    const st = safeStatus(t.status);
     const platformDisplay = t.platform ? getPlatformDisplay(t.platform) : '';
     return `
     <div>
       <div class="test-row" onclick="toggleDetail(${idx})" data-idx="${idx}"
-           data-name="${esc(t.name)}" data-status="${t.status}"
+           data-name="${esc(t.name)}" data-status="${st}"
            data-platform="${esc(platformDisplay)}" data-category="${esc(t.category||'')}"
            data-suite="${esc(t._suite_name||'')}" data-tags="${esc((t.tags||[]).join(','))}">
-        <div><span class="status-dot ${t.status}"></span></div>
+        <div><span class="status-dot ${st}"></span></div>
         <div class="test-name">
           ${esc(t.name)}
           ${t._suite_name ? '<span class="test-suite-tag"> &middot; '+esc(t._suite_name)+'</span>' : ''}
@@ -1305,10 +1315,10 @@ function renderTests(tests) {
         <div class="test-platform">${esc(platformDisplay)}</div>
         <div class="test-category">${t.category ? '<span class="tag-pill">'+esc(t.category)+'</span>' : ''}</div>
         <div class="test-duration">${formatDuration(t.duration_ms||0)}</div>
-        <div style="text-align:center;"><span class="status-badge ${t.status}"><span class="status-dot ${t.status}"></span>${t.status}</span></div>
-        <div class="test-screenshots-count">${t.screenshot_count || 0}</div>
+        <div style="text-align:center;"><span class="status-badge ${st}"><span class="status-dot ${st}"></span>${st}</span></div>
+        <div class="test-screenshots-count">${num(t.screenshot_count)}</div>
       </div>
-      <div class="test-detail" id="detail-${idx}">${renderTestDetail(t)}</div>
+      <div class="test-detail" id="detail-${idx}"></div>
     </div>`;
   }).join('');
 }
@@ -1329,7 +1339,7 @@ function renderTestDetail(t) {
   if (t.steps && t.steps.length > 0) {
     html += '<div class="detail-section"><div class="detail-section-title">Test Steps</div><div class="steps-list">';
     t.steps.forEach(step => {
-      html += `<div class="step-item ${step.status}">
+      html += `<div class="step-item ${safeStatus(step.status)}">
         <div class="step-status-icon">${statusIcon(step.status)}</div>
         <div class="step-content">
           <div class="step-name">${esc(step.name)}</div>
@@ -1392,7 +1402,7 @@ function renderTestDetail(t) {
   if (screenshots.length > 0) {
     html += '<div class="detail-section"><div class="detail-section-title">Screenshots</div>';
     screenshots.forEach(s => {
-      html += `<div style="margin-bottom:8px;"><img src="data:${s.mime_type};base64,${s.data}" style="max-width:100%;border-radius:var(--radius-sm);border:1px solid var(--border-color);cursor:pointer;" onclick="event.stopPropagation();openLightbox('data:${s.mime_type};base64,${s.data}','${esc(s.name)}')" alt="${esc(s.name)}"><div style="font-size:11px;color:var(--text-muted);margin-top:4px;">${esc(s.name)}</div></div>`;
+      html += `<div style="margin-bottom:8px;"><img src="${imgSrc(s)}" style="max-width:100%;border-radius:var(--radius-sm);border:1px solid var(--border-color);cursor:pointer;" onclick="event.stopPropagation();openLightbox(this.src,this.alt)" alt="${esc(s.name)}"><div style="font-size:11px;color:var(--text-muted);margin-top:4px;">${esc(s.name)}</div></div>`;
     });
     html += '</div>';
   }
@@ -1405,7 +1415,7 @@ function renderStepAttachments(attachments) {
   if (!attachments || attachments.length === 0) return '';
   let html = '';
   attachments.filter(a => a.type === 'screenshot').forEach(a => {
-    html += `<div class="step-screenshot-thumb"><img src="data:${a.mime_type};base64,${a.data}" onclick="event.stopPropagation();openLightbox('data:${a.mime_type};base64,${a.data}','${esc(a.name)}')" alt="${esc(a.name)}"></div>`;
+    html += `<div class="step-screenshot-thumb"><img src="${imgSrc(a)}" onclick="event.stopPropagation();openLightbox(this.src,this.alt)" alt="${esc(a.name)}"></div>`;
   });
   return html;
 }
@@ -1418,14 +1428,43 @@ function statusIcon(status) {
     warning: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0zM12 9v4M12 17h.01"/></svg>',
     skipped: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="2"><path d="M5 4l10 8-10 8V4zM19 5v14"/></svg>',
   };
-  return icons[status] || icons.info;
+  return icons[safeStatus(status)] || icons.info;
 }
 
-function esc(str) { if (!str) return ''; return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+function esc(str) {
+  if (str === null || str === undefined) return '';
+  return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+}
+
+function num(v) { const n = Number(v); return isFinite(n) ? n : 0; }
+
+const KNOWN_STATUSES = ['passed','failed','skipped','broken','blocked','warning','info'];
+function safeStatus(s) {
+  const v = String(s || '').toLowerCase();
+  return KNOWN_STATUSES.includes(v) ? v : 'info';
+}
+
+const SAFE_IMAGE_MIME = ['image/png','image/jpeg','image/gif','image/webp'];
+function imgSrc(a) {
+  const mime = SAFE_IMAGE_MIME.includes(a.mime_type) ? a.mime_type : 'image/png';
+  const data = String(a.data || '').replace(/\s/g, '');
+  return /^[A-Za-z0-9+\/=]*$/.test(data) ? 'data:' + mime + ';base64,' + data : '';
+}
 
 function toggleDetail(idx) {
   const el = document.getElementById('detail-' + idx);
+  if (!el.dataset.rendered) {
+    // Build detail HTML on first open instead of for every row up front.
+    el.innerHTML = renderTestDetail(_renderedTests[idx]);
+    el.dataset.rendered = '1';
+  }
   el.classList.toggle('open');
+}
+
+let _filterTimer = null;
+function scheduleFilter() {
+  clearTimeout(_filterTimer);
+  _filterTimer = setTimeout(filterTests, 150);
 }
 
 // ===== FILTERS =====
@@ -1462,12 +1501,12 @@ function filterTests() {
 
   if (query) {
     tests = tests.filter(t =>
-      t.name.toLowerCase().includes(query) ||
-      (t.error_message || '').toLowerCase().includes(query) ||
-      (t.tags || []).some(tag => tag.toLowerCase().includes(query))
+      String(t.name || '').toLowerCase().includes(query) ||
+      String(t.error_message || '').toLowerCase().includes(query) ||
+      (t.tags || []).some(tag => String(tag).toLowerCase().includes(query))
     );
   }
-  if (status) tests = tests.filter(t => t.status === status);
+  if (status) tests = tests.filter(t => safeStatus(t.status) === status);
   if (platform) tests = tests.filter(t => t.platform && getPlatformDisplay(t.platform) === platform);
   if (category) tests = tests.filter(t => t.category === category);
   if (suite) tests = tests.filter(t => t._suite_name === suite);
@@ -1499,8 +1538,8 @@ function renderScreenshots() {
 
   grid.innerHTML = screenshots.map(s => `
     <div class="screenshot-card">
-      <div class="screenshot-img-wrapper" onclick="openLightbox('data:${s.mime_type};base64,${s.data}','${esc(s.name)}')">
-        <img src="data:${s.mime_type};base64,${s.data}" alt="${esc(s.name)}" loading="lazy">
+      <div class="screenshot-img-wrapper" onclick="const i=this.querySelector('img');openLightbox(i.src,i.alt)">
+        <img src="${imgSrc(s)}" alt="${esc(s.name)}" loading="lazy">
       </div>
       <div class="screenshot-info">
         <div class="screenshot-name">${esc(s.name)}</div>
@@ -1536,13 +1575,13 @@ function renderTimeline() {
     const time = t.start_time ? new Date(t.start_time).toLocaleTimeString() : '';
     return `
     <div class="timeline-item">
-      <div class="timeline-marker ${t.status}">${statusIcon(t.status)}</div>
+      <div class="timeline-marker ${safeStatus(t.status)}">${statusIcon(t.status)}</div>
       <div class="timeline-content">
         <div class="timeline-title">${esc(t.name)}</div>
         <div class="timeline-meta">
           <span>${time}</span>
           <span>${formatDuration(t.duration_ms || 0)}</span>
-          <span class="status-badge ${t.status}"><span class="status-dot ${t.status}"></span>${t.status}</span>
+          <span class="status-badge ${safeStatus(t.status)}"><span class="status-dot ${safeStatus(t.status)}"></span>${safeStatus(t.status)}</span>
         </div>
       </div>
       <div class="timeline-connector"></div>
@@ -1555,7 +1594,7 @@ function renderEnvironment() {
   const grid = document.getElementById('envGrid');
   let html = '';
 
-  REPORT_DATA.suites.forEach(suite => {
+  (REPORT_DATA.suites || []).forEach(suite => {
     const env = suite.environment || {};
     if (Object.keys(env).length === 0) return;
 
@@ -1571,9 +1610,9 @@ function renderEnvironment() {
 
   if (!html) {
     html = '<div class="env-card"><div class="env-card-title">Report Info</div><table class="env-table">';
-    html += `<tr><td>Generated</td><td>${REPORT_DATA.generated_at_display}</td></tr>`;
-    html += `<tr><td>Total Suites</td><td>${REPORT_DATA.summary.suite_count}</td></tr>`;
-    html += `<tr><td>Total Tests</td><td>${REPORT_DATA.summary.total}</td></tr>`;
+    html += `<tr><td>Generated</td><td>${esc(REPORT_DATA.generated_at_display)}</td></tr>`;
+    html += `<tr><td>Total Suites</td><td>${num(REPORT_DATA.summary.suite_count)}</td></tr>`;
+    html += `<tr><td>Total Tests</td><td>${num(REPORT_DATA.summary.total)}</td></tr>`;
     html += '</table></div>';
   }
 
@@ -1589,12 +1628,12 @@ function renderPlatforms() {
 
   let cardsHtml = '';
   Object.entries(stats).forEach(([name, data]) => {
-    const rate = data.total > 0 ? (data.passed / data.total * 100).toFixed(1) : 0;
+    const rate = num(data.total) > 0 ? (num(data.passed) / num(data.total) * 100).toFixed(1) : 0;
     cardsHtml += `
     <div class="stat-card ${parseFloat(rate) >= 80 ? 'green' : parseFloat(rate) >= 50 ? 'yellow' : 'red'}">
       <div class="stat-label">${esc(name)}</div>
       <div class="stat-value" style="font-size:24px;">${rate}%</div>
-      <div class="stat-extra">${data.passed}/${data.total} passed</div>
+      <div class="stat-extra">${num(data.passed)}/${num(data.total)} passed</div>
     </div>`;
   });
   cards.innerHTML = cardsHtml;

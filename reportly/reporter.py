@@ -28,6 +28,23 @@ from reportly.models import (
 )
 from reportly.screenshot import ScreenshotCapture
 
+
+def safe_json_for_script(data: Any) -> str:
+    """Serialize data as JSON that is safe to embed inside an HTML <script> tag.
+
+    Escapes characters that could close the script tag or break JS parsing,
+    e.g. a test name containing "</script>".
+    """
+    return (
+        json.dumps(data, default=str)
+        .replace("<", "\\u003c")
+        .replace(">", "\\u003e")
+        .replace("&", "\\u0026")
+        .replace("\u2028", "\\u2028")
+        .replace("\u2029", "\\u2029")
+    )
+
+
 logger = logging.getLogger("reportly")
 
 TEMPLATE_DIR = os.path.join(os.path.dirname(__file__), "templates")
@@ -117,8 +134,10 @@ class ReportlyReporter:
             metadata=metadata,
         )
         self._current_test = test
-        if self._current_suite:
-            self._current_suite.add_test(test)
+        if not self._current_suite:
+            # Without a suite the test would be silently left out of the report.
+            self.start_suite("Default Suite")
+        self._current_suite.add_test(test)
         return test
 
     def end_test(
@@ -343,7 +362,7 @@ class ReportlyReporter:
         template = self._env.get_template("report_template.html")
         html_content = template.render(
             data=report_data,
-            data_json=json.dumps(report_data, default=str),
+            data_json=safe_json_for_script(report_data),
         )
 
         filepath = os.path.join(self.output_dir, filename)

@@ -7,9 +7,9 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 
-import java.io.FileWriter;
 import java.io.IOException;
 import java.lang.reflect.Field;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.time.Instant;
@@ -49,6 +49,7 @@ public class ReportlyExtension implements
         AfterAllCallback,
         BeforeEachCallback,
         AfterEachCallback,
+        AfterTestExecutionCallback,
         TestWatcher {
 
     private static final ExtensionContext.Namespace NAMESPACE =
@@ -57,7 +58,6 @@ public class ReportlyExtension implements
     private static final Map<String, SuiteData> suites = new ConcurrentHashMap<>();
     private static final Map<String, TestData> activeTests = new ConcurrentHashMap<>();
     private static final Map<String, Long> testStartTimes = new ConcurrentHashMap<>();
-    private static boolean initialized = false;
 
     // ---- Lifecycle Hooks ----
 
@@ -72,7 +72,6 @@ public class ReportlyExtension implements
             suite.environment = buildEnvironmentInfo();
             return suite;
         });
-        initialized = true;
     }
 
     @Override
@@ -108,6 +107,17 @@ public class ReportlyExtension implements
         activeTests.put(testId, test);
     }
 
+    /**
+     * Runs right after the test method and BEFORE any {@code @AfterEach} methods,
+     * so the driver is still alive (tests usually call driver.quit() in @AfterEach).
+     */
+    @Override
+    public void afterTestExecution(ExtensionContext context) {
+        if (context.getExecutionException().isPresent()) {
+            captureFailureScreenshot(context);
+        }
+    }
+
     @Override
     public void afterEach(ExtensionContext context) {
         // handled by TestWatcher callbacks
@@ -124,8 +134,6 @@ public class ReportlyExtension implements
     public void testFailed(ExtensionContext context, Throwable cause) {
         String error = cause.getMessage() != null ? cause.getMessage() : cause.toString();
         String stackTrace = stackTraceToString(cause);
-
-        captureFailureScreenshot(context);
 
         finalizeTest(context, "failed", error, stackTrace);
     }
@@ -298,13 +306,17 @@ public class ReportlyExtension implements
 
     private WebDriver findDriverInTestInstance(ExtensionContext context) {
         return context.getTestInstance().map(instance -> {
-            for (Field field : instance.getClass().getDeclaredFields()) {
-                if (WebDriver.class.isAssignableFrom(field.getType())) {
-                    try {
-                        field.setAccessible(true);
-                        return (WebDriver) field.get(instance);
-                    } catch (IllegalAccessException e) {
-                        return null;
+            // Walk up the class hierarchy so a driver declared in a shared BaseTest is found.
+            for (Class<?> c = instance.getClass(); c != null && c != Object.class; c = c.getSuperclass()) {
+                for (Field field : c.getDeclaredFields()) {
+                    if (WebDriver.class.isAssignableFrom(field.getType())) {
+                        try {
+                            field.setAccessible(true);
+                            WebDriver driver = (WebDriver) field.get(instance);
+                            if (driver != null) return driver;
+                        } catch (IllegalAccessException | RuntimeException e) {
+                            // inaccessible field; keep looking
+                        }
                     }
                 }
             }
@@ -329,7 +341,7 @@ public class ReportlyExtension implements
         }
     }
 
-    private void writeJsonOutput() {
+    private static synchronized void writeJsonOutput() {
         String outputDir = System.getProperty("reportly.output.dir", "./reports");
         String outputFile = System.getProperty("reportly.output.file", "junit-results.json");
         String title = System.getProperty("reportly.title", "JUnit Test Report");
@@ -339,7 +351,7 @@ public class ReportlyExtension implements
         report.put("title", title);
         report.put("description", description);
         report.put("theme", "dark");
-        report.put("suites", new ArrayList<>(suites.values()));
+        report.put("suites", snapshotSuites());
 
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         String json = gson.toJson(report);
@@ -348,9 +360,8 @@ public class ReportlyExtension implements
             Path dir = Path.of(outputDir);
             Files.createDirectories(dir);
             Path filePath = dir.resolve(outputFile);
-            try (FileWriter writer = new FileWriter(filePath.toFile())) {
-                writer.write(json);
-            }
+            // Always UTF-8: the Python reporter reads UTF-8, and Windows' default charset is not.
+            Files.writeString(filePath, json, StandardCharsets.UTF_8);
             System.out.println("[Reportly] JSON results written to: " + filePath.toAbsolutePath());
 
             if ("true".equalsIgnoreCase(System.getProperty("reportly.auto.generate", "false"))) {
@@ -361,7 +372,26 @@ public class ReportlyExtension implements
         }
     }
 
-    private void autoGenerateReport(String jsonPath, String outputDir) {
+    /** Copy suites so parallel tests can't modify the lists while Gson serializes them. */
+    private static List<SuiteData> snapshotSuites() {
+        List<SuiteData> copy = new ArrayList<>();
+        for (SuiteData s : suites.values()) {
+            SuiteData c = new SuiteData();
+            c.name = s.name;
+            c.suite_id = s.suite_id;
+            c.description = s.description;
+            c.start_time = s.start_time;
+            c.end_time = s.end_time;
+            c.environment = s.environment;
+            synchronized (s.tests) {
+                c.tests = new ArrayList<>(s.tests);
+            }
+            copy.add(c);
+        }
+        return copy;
+    }
+
+    private static void autoGenerateReport(String jsonPath, String outputDir) {
         try {
             String title = System.getProperty("reportly.title", "JUnit Test Report");
             ProcessBuilder pb = new ProcessBuilder(
