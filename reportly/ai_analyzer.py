@@ -5,6 +5,7 @@ from __future__ import annotations
 import json
 import logging
 import os
+import re
 from typing import Optional
 
 from reportly.models import AIAnalysis, TestResult, TestStatus
@@ -24,6 +25,14 @@ provide a structured analysis in JSON format with these fields:
 }
 
 Be concise and technical. Focus on actionable insights."""
+
+
+_SENSITIVE_KEY = re.compile(r"pass(word|wd)?|secret|token|api[_-]?key|auth|credential|cookie|(^|[_-])pin($|[_-])", re.I)
+
+
+def _redact(params: dict) -> dict:
+    """Hide values like passwords/tokens before sending test data to a third-party AI API."""
+    return {k: ("***" if _SENSITIVE_KEY.search(str(k)) else v) for k, v in params.items()}
 
 
 def _build_user_prompt(test: TestResult) -> str:
@@ -48,7 +57,7 @@ def _build_user_prompt(test: TestResult) -> str:
                 step_info.append(f"  - {s.name}: {s.error_message}" if s.error_message else f"  - {s.name}")
             parts.append("Failed Steps:\n" + "\n".join(step_info))
     if test.parameters:
-        parts.append(f"Parameters: {json.dumps(test.parameters, default=str)}")
+        parts.append(f"Parameters: {json.dumps(_redact(test.parameters), default=str)}")
     return "\n".join(parts)
 
 

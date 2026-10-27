@@ -20,7 +20,8 @@ from datetime import datetime
 from jinja2 import Environment, FileSystemLoader
 
 from reportly.ai_analyzer import AIFailureAnalyzer
-from reportly.models import AIAnalysis, TestStatus
+from reportly.models import AIAnalysis, Platform, PlatformType, StepStatus, TestResult, TestStatus
+from reportly.reporter import safe_json_for_script
 
 TEMPLATE_DIR = os.path.join(os.path.dirname(__file__), "templates")
 
@@ -40,6 +41,30 @@ def _format_duration(ms: float) -> str:
     return f"{hours}h {mins}m {secs:.0f}s"
 
 
+def _parse_enum(enum_cls, value, default):
+    """Parse an enum value leniently (e.g. "PASSED" or "Android" from Java/Kotlin output)."""
+    try:
+        return enum_cls(str(value).strip().lower())
+    except (ValueError, AttributeError):
+        return default
+
+
+def _normalize(data: dict) -> dict:
+    """Fill in missing lists and lowercase statuses so input from any language renders correctly."""
+    suites = data.get("suites")
+    data["suites"] = suites = [s for s in (suites or []) if isinstance(s, dict)]
+    for suite in suites:
+        suite["tests"] = tests = [t for t in (suite.get("tests") or []) if isinstance(t, dict)]
+        for test in tests:
+            test["status"] = str(test.get("status") or "").strip().lower()
+            for key in ("steps", "attachments", "tags"):
+                test[key] = test.get(key) or []
+            for step in test["steps"]:
+                if isinstance(step, dict):
+                    step["status"] = str(step.get("status") or "info").strip().lower()
+    return data
+
+
 def _enrich_with_ai(data: dict, api_key: str, model: str, base_url: str | None) -> dict:
     """Run AI analysis on failed tests in the raw data."""
     analyzer = AIFailureAnalyzer(api_key=api_key, model=model, base_url=base_url)
@@ -49,36 +74,34 @@ def _enrich_with_ai(data: dict, api_key: str, model: str, base_url: str | None) 
 
     for suite in data.get("suites", []):
         for test in suite.get("tests", []):
-            status = test.get("status", "")
+            status = str(test.get("status") or "").lower()
             if status not in ("failed", "broken"):
                 continue
 
-            from reportly.models import TestResult, Platform, PlatformType, TestStep, StepStatus
-
             tr = TestResult(
-                name=test.get("name", ""),
-                test_id=test.get("test_id", ""),
-                suite_name=test.get("suite_name", ""),
-                error_message=test.get("error_message", ""),
-                stack_trace=test.get("stack_trace", ""),
-                parameters=test.get("parameters", {}),
+                name=test.get("name") or "",
+                test_id=test.get("test_id") or "",
+                suite_name=test.get("suite_name") or "",
+                error_message=test.get("error_message") or "",
+                stack_trace=test.get("stack_trace") or "",
+                parameters=test.get("parameters") or {},
                 status=TestStatus.FAILED if status == "failed" else TestStatus.BROKEN,
             )
 
             p = test.get("platform")
-            if p:
+            if isinstance(p, dict):
                 tr.platform = Platform(
-                    platform_type=PlatformType(p.get("platform_type", "web")),
-                    os_name=p.get("os_name", ""),
-                    browser_name=p.get("browser_name", ""),
-                    device_name=p.get("device_name", ""),
+                    platform_type=_parse_enum(PlatformType, p.get("platform_type"), PlatformType.WEB),
+                    os_name=p.get("os_name") or "",
+                    browser_name=p.get("browser_name") or "",
+                    device_name=p.get("device_name") or "",
                 )
 
-            for s in test.get("steps", []):
+            for s in test.get("steps") or []:
                 tr.add_step(
-                    name=s.get("name", ""),
-                    status=StepStatus(s.get("status", "info")),
-                    error_message=s.get("error_message", ""),
+                    name=s.get("name") or "",
+                    status=_parse_enum(StepStatus, s.get("status"), StepStatus.INFO),
+                    error_message=s.get("error_message") or "",
                 )
 
             analysis = analyzer.analyze(tr)
@@ -201,7 +224,7 @@ def generate_from_json(
     data["generated_at"] = datetime.now().isoformat()
     data["generated_at_display"] = datetime.now().strftime("%B %d, %Y at %I:%M %p")
 
-    data = _compute_summary(data)
+    data = _compute_summary(_normalize(data))
 
     if ai_api_key:
         data = _enrich_with_ai(data, ai_api_key, ai_model, ai_base_url)
@@ -210,7 +233,7 @@ def generate_from_json(
 
     env = Environment(loader=FileSystemLoader(TEMPLATE_DIR), autoescape=True)
     template = env.get_template("report_template.html")
-    html = template.render(data=data, data_json=json.dumps(data, default=str))
+    html = template.render(data=data, data_json=safe_json_for_script(data))
 
     os.makedirs(output_dir, exist_ok=True)
     filepath = os.path.join(output_dir, filename)

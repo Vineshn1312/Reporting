@@ -73,9 +73,12 @@ class ScreenshotCapture:
                 original_size = driver.get_window_size()
                 total_height = driver.execute_script("return document.body.scrollHeight")
                 total_width = driver.execute_script("return document.body.scrollWidth")
-                driver.set_window_size(total_width, total_height)
-                b64_data = driver.get_screenshot_as_base64()
-                driver.set_window_size(original_size["width"], original_size["height"])
+                try:
+                    driver.set_window_size(total_width, total_height)
+                    b64_data = driver.get_screenshot_as_base64()
+                finally:
+                    # Always restore the window, even if the screenshot fails.
+                    driver.set_window_size(original_size["width"], original_size["height"])
 
             return Attachment(
                 name=name,
@@ -131,12 +134,21 @@ class ScreenshotCapture:
         try:
             contexts = driver.contexts
             current = driver.context
+        except Exception as e:
+            logger.error("Failed multi-context capture: %s", e)
+            return results
+        try:
             for ctx in contexts:
                 driver.switch_to.context(ctx)
                 attachment = ScreenshotCapture.capture(driver, name=f"context_{ctx}")
                 if attachment:
                     results[ctx] = attachment
-            driver.switch_to.context(current)
         except Exception as e:
             logger.error("Failed multi-context capture: %s", e)
+        finally:
+            # Switch back so later test steps don't run in the wrong (e.g. WEBVIEW) context.
+            try:
+                driver.switch_to.context(current)
+            except Exception as e:
+                logger.error("Failed to restore Appium context %s: %s", current, e)
         return results
